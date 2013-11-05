@@ -1,0 +1,12 @@
+<h1> <%= @question.title %> </h1>
+
+<div>
+	<%= @question.body %>
+</div>
+
+<% if (@question.user_id == current_user_id) %>
+	<%= button_to "Delete", question_url(@question), :method => "delete" %>
+  <%= button_to "Edit", edit_question_url(@question), :method => "get" %>
+<% end %>
+
+<%= link_to "Back", questions_url %>

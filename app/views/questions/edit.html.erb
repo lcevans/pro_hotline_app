@@ -1,6 +1,11 @@
-New Question
+Edit Question
 
-<form action="<%= questions_url %>" method="POST">
+
+<form action="<%= question_url(@question) %>" method="POST">
+	<input type="hidden"
+	       name="_method"
+	       value="PUT">
+
 	<input type="hidden"
 	       name="authenticity_token"
 	       value="<%= form_authenticity_token %>">
@@ -21,7 +26,5 @@ New Question
 	</textarea>
 	</p>
 
-	<input type="submit" value="Create Question">
-
-
+	<input type="submit" value="Update Question">
 </form>

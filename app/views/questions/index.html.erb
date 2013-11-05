@@ -1,7 +1,13 @@
+<h1>Questions Index</h1>
+
 <ul>
 <% @questions.each do |question| %>
   <li>
-  	<%= question.title %>
+  	<%= link_to question.title, question_url(question) %>
   </li>
 <% end %>
 </ul>
+
+<% if (!!current_user) %>
+	<%= link_to "Create New Question", new_user_question_url(current_user.id) %>
+<% end %>

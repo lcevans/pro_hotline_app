@@ -4,6 +4,11 @@ class QuestionsController < ApplicationController
 		render :index
 	end
 
+	def show
+		@question = Question.find(params[:id])
+		render :show
+	end
+
 	def new
 		@question = Question.new
 		render :new
@@ -16,12 +21,29 @@ class QuestionsController < ApplicationController
 		if @question.save
 			redirect_to questions_url
 		else
-			flash[:errors] << @question.errors.full_messages
+			flash[:errors] = @question.errors.full_messages
 			render :new
 		end
 	end
 
-	def show
+	def edit
+		@question = Question.find(params[:id])
+		render :edit
+	end
 
+	def update
+		@question = Question.find(params[:id])
+		if @question.update_attributes(params[:question])
+			redirect_to questions_url
+		else
+			flash[:errors] = @question.errors.full_messages
+			render :edit
+		end
+	end
+
+	def destroy
+		@question = Question.find(params[:id])
+		@question.destroy
+		redirect_to questions_url
 	end
 end
