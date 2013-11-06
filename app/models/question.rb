@@ -15,4 +15,7 @@ class Question < ActiveRecord::Base
   has_many :tags, :through => :taggings, :source => :tag
   has_many :views, :dependent => :destroy
 
+  has_many :votes, :as => :votable, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
+
 end

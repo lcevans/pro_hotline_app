@@ -11,5 +11,7 @@ class Answer < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User", :foreign_key => :author_id
   belongs_to :question, :class_name => "Question", :foreign_key => :question_id
-
+  
+  has_many :votes, :as => :votable, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
 end

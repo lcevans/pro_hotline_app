@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106012818) do
+ActiveRecord::Schema.define(:version => 20131106184310) do
 
   create_table "answers", :force => true do |t|
     t.integer  "author_id",   :null => false
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(:version => 20131106012818) do
 
   add_index "answers", ["author_id"], :name => "index_answers_on_author_id"
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "author_id",        :null => false
+    t.string   "body",             :null => false
+    t.integer  "commentable_id",   :null => false
+    t.string   "commentable_type", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "comments", ["author_id"], :name => "index_comments_on_author_id"
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
 
   create_table "questions", :force => true do |t|
     t.integer  "author_id",      :null => false
@@ -73,5 +86,18 @@ ActiveRecord::Schema.define(:version => 20131106012818) do
 
   add_index "views", ["question_id"], :name => "index_views_on_question_id"
   add_index "views", ["user_id"], :name => "index_views_on_user_id"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "votable_id",   :null => false
+    t.string   "votable_type", :null => false
+    t.string   "vote_type",    :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["votable_id"], :name => "index_votes_on_votable_id"
+  add_index "votes", ["votable_type"], :name => "index_votes_on_votable_type"
 
 end

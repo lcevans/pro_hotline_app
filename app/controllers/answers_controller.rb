@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-	before_filter :require_current_user!, :only => [:new, :create, :edit, :update, :destroy]
+	before_filter :require_current_user!
 
 	def new
 		@answer = Answer.new()
@@ -39,5 +39,19 @@ class AnswersController < ApplicationController
 		question_id = @answer.question_id
 		@answer.destroy
 		redirect_to question_url(question_id)
+	end
+
+	# Additional control methods
+
+	def upvote
+		@answer = Answer.find(params[:answer_id])
+		Vote.create_or_modify(current_user_id, @answer.id, "Answer", "UPVOTE")
+		redirect_to question_url(@answer.question_id)
+	end
+
+	def downvote
+		@answer = Answer.find(params[:answer_id])
+		Vote.create_or_modify(current_user_id, @answer.id, "Answer", "DOWNVOTE")
+		redirect_to question_url(@answer.question_id)
 	end
 end

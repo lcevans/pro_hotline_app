@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <div class="head">
+
   <title>ProHotline</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -16,20 +18,19 @@
   	<li><%= link_to "Sign Up", new_user_url %></li>
   	<% end %>
   </ul>
-  <hr>
 
+</div>
 </head>
 
 <body>
-	<ul>
-		<% flash[:errors].try(:each) do |error| %>
-		<li><%= error %></li>
-		<% end %>
-	</ul>
-
-
-
-<%= yield %>
-
+  <div class="body">
+	  <ul>
+	  	<% flash[:errors].try(:each) do |error| %>
+  		<li><%= error %></li>
+	  	<% end %>
+  	</ul>
+    <%= yield %>
+  </div>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 	include QuestionsHelper
 
-	before_filter :require_current_user!, :only => [:new, :create, :edit, :update, :destroy]
+	before_filter :require_current_user!, :except => [:index, :show]
 
 	def index
 		@questions = Question.includes(:author).all
@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
 			View.create!(:user_id => current_user_id, :question_id => question_id)
 		end
 
-		@question = Question.includes(:views).find(question_id)
+		@question = Question.includes(:views, :votes).find(question_id)
 		render :show
 	end
 
@@ -61,11 +61,23 @@ class QuestionsController < ApplicationController
 		redirect_to questions_url
 	end
 
+	# Additional control methods
+
 	def mark_best_answer
 		@question = Question.find(params[:question_id])
 		@question.best_answer_id = params[:answer_id]
 		@question.save!
 		redirect_to question_url(@question)
+	end
+
+	def upvote
+		Vote.create_or_modify(current_user_id, params[:question_id], "Question", "UPVOTE")
+		redirect_to question_url(params[:question_id])
+	end
+
+	def downvote
+		Vote.create_or_modify(current_user_id, params[:question_id], "Question", "DOWNVOTE")
+		redirect_to question_url(params[:question_id])
 	end
 
 end

@@ -8,3 +8,8 @@ Tag.create(name: "The Legend of Zelda")
 Tag.create(name: "Megaman 2")
 Tag.create(name: "Bubble Bobble")
 Tag.create(name: "Super Mario Bros")
+
+chris = User.create!(username: "Chris", password: "password")
+dan = User.create!(username: "Dan", password: "password")
+steve = User.create!(username: "Steve", password: "password")
+
