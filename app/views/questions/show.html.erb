@@ -1,12 +1,43 @@
-<h1> <%= @question.title %> </h1>
+<h1>Title: <%= @question.title %> </h1>
+<h4>Authored by <%= @question.author.username %></h4>
+<h4>Views: <%= @question.views.count %></h4>
 
-<div>
+<h2>Body</h2>
+<div class="question-body">
 	<%= @question.body %>
 </div>
 
-<% if (@question.user_id == current_user_id) %>
-	<%= button_to "Delete", question_url(@question), :method => "delete" %>
-  <%= button_to "Edit", edit_question_url(@question), :method => "get" %>
+<div>
+	<h4>Tags</h4>
+	<ul>
+		<% @question.tags.each do |tag| %>
+		  <li><%= tag.name %></li>
+		<% end %>
+  </ul>
+</div>
+
+<% if (@question.author_id == current_user_id) %>
+	<%= button_to "Delete Question", question_url(@question), :method => "delete" %>
+  <%= button_to "Edit Question", edit_question_url(@question), :method => "get" %>
+<% end %>
+
+<h2> Answers </h2>
+
+<% if (!!current_user) %>
+	<%= link_to "Add Answer", new_question_answer_url(@question) %>
+<% end %>
+
+<% @question.answers.includes(:author).each do |answer| %> 
+	<h4><%= "Answer by #{answer.author.username}" %></h4>
+	<div class="answer-body">
+		<p>
+			<%= answer.body %>
+		</p>
+		<% if (answer.author_id == current_user_id) %>
+		  	<%= button_to "Delete Answer", answer_url(answer), :method => "delete" %>
+		  	<%= button_to "Edit Answer", edit_answer_url(answer), :method => "get" %>
+		<% end %>
+	</div>
 <% end %>
 
 <%= link_to "Back", questions_url %>

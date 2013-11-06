@@ -27,5 +27,18 @@
 	</textarea>
 	</p>
 
+	<p>
+	<% tag_ids = question.tag_ids %>
+	<% Tag.all.each do |tag| %>
+	  <label for="tag_<%= tag.id %>"><%= tag.name %></label>
+	  <input type="checkbox"
+	         id="tag_<%= tag.id %>"
+	         name="tag_ids[]"
+	         value="<%= tag.id %>"
+	         <%= "checked" if tag_ids.include?(tag.id) %>>
+	<br>
+	<% end %>
+	</p>
+
 	<input type="submit" value="<%= button_label %>">
 </form>

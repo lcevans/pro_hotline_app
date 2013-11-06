@@ -1,11 +1,20 @@
 class QuestionsController < ApplicationController
+	include QuestionsHelper
+
+	before_filter :require_current_user!, :only => [:new, :create, :edit, :update, :destroy]
+
 	def index
-		@questions = Question.all
+		@questions = Question.includes(:author).all
 		render :index
 	end
 
 	def show
-		@question = Question.find(params[:id])
+		question_id = params[:id]		
+		if hasnt_viewed(current_user, question_id)
+			View.create!(:user_id => current_user_id, :question_id => question_id)
+		end
+
+		@question = Question.includes(:views).find(question_id)
 		render :show
 	end
 
@@ -16,10 +25,12 @@ class QuestionsController < ApplicationController
 
 	def create
 		@question = Question.new(params[:question])
-		@question.user_id = current_user.id
+		@question.author_id = current_user_id
+
+		@question.tag_ids = params[:tag_ids]
 
 		if @question.save
-			redirect_to questions_url
+			redirect_to question_url(@question)
 		else
 			flash[:errors] = @question.errors.full_messages
 			render :new
@@ -33,8 +44,11 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question = Question.find(params[:id])
+
+		@question.tag_ids = params[:tag_ids]
+
 		if @question.update_attributes(params[:question])
-			redirect_to questions_url
+			redirect_to question_url(@question)
 		else
 			flash[:errors] = @question.errors.full_messages
 			render :edit
@@ -46,4 +60,5 @@ class QuestionsController < ApplicationController
 		@question.destroy
 		redirect_to questions_url
 	end
+
 end

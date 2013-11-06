@@ -11,17 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105185112) do
+ActiveRecord::Schema.define(:version => 20131106003125) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "author_id",   :null => false
+    t.integer  "question_id", :null => false
+    t.text     "body",        :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "answers", ["author_id"], :name => "index_answers_on_author_id"
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "questions", :force => true do |t|
-    t.integer  "user_id",    :null => false
+    t.integer  "author_id",  :null => false
     t.string   "title",      :null => false
     t.text     "body",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
+  add_index "questions", ["author_id"], :name => "index_questions_on_author_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id",      :null => false
+    t.integer  "question_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "taggings", ["question_id"], :name => "index_taggings_on_question_id"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username",        :null => false
@@ -33,5 +62,15 @@ ActiveRecord::Schema.define(:version => 20131105185112) do
 
   add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "views", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "question_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "views", ["question_id"], :name => "index_views_on_question_id"
+  add_index "views", ["user_id"], :name => "index_views_on_user_id"
 
 end

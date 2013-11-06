@@ -1,9 +1,18 @@
 class Question < ActiveRecord::Base
-  attr_accessible :title, :body, :user_id
+  attr_accessible :title, :body, :author_id
+
+  # Validations
 
   validates :title, :presence => true
   validates :body, :presence => true
-  validates :user_id, :presence => true
+  validates :author_id, :presence => true
 
-  belongs_to :user
+  # Associations
+
+  belongs_to :author, :class_name => "User", :foreign_key => :author_id
+  has_many :answers, :class_name => "Answer", :foreign_key => :question_id, :dependent => :destroy
+  has_many :taggings, :dependent => :destroy
+  has_many :tags, :through => :taggings, :source => :tag
+  has_many :views, :dependent => :destroy
+
 end

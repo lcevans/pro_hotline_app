@@ -1,0 +1,23 @@
+<% action, method, button_label = 
+       (answer.persisted? ? [answer_url(answer.id), "PUT", "Update Answer"] 
+                            : [question_answers_url(answer.question_id), "POST", "Create Answer"]) %>
+
+<form action="<%= action %>" method="POST">
+	<input type="hidden"
+	       name="_method"
+	       value="<%= method %>">
+
+	<input type="hidden"
+	       name="authenticity_token"
+	       value="<%= form_authenticity_token %>">
+
+	<p>
+	<label for="answer_body">Body</label>
+	<textarea id="answer_body"
+	          name="answer[body]">
+	  <%= answer.body %>
+	</textarea>
+	</p>
+
+	<input type="submit" value="<%= button_label %>">
+</form>

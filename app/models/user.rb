@@ -11,10 +11,12 @@ class User < ActiveRecord::Base
 
   # Associations
 
-  has_many :questions 
+  has_many :authored_questions, :class_name => "Question", :foreign_key => :author_id 
+  has_many :authored_answers, :class_name => "Answer", :foreign_key => :author_id
+  has_many :views
 
 
-  # Functions
+  # Methods
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
@@ -43,6 +45,7 @@ class User < ActiveRecord::Base
   end
 
   private
+  
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end
