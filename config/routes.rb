@@ -8,6 +8,8 @@ ProHotlineApp::Application.routes.draw do
   	resources :questions, :only => [:new]
   end
   resources :questions, :only => [:create, :index, :show, :destroy, :edit, :update] do
+  	post "/markanswer/:answer_id", :to => "questions#mark_best_answer", :as => "mark_answer"
+
   	resources :answers, :only => [:new, :create, :index]
   end
 

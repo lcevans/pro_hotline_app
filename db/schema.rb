@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106003125) do
+ActiveRecord::Schema.define(:version => 20131106012818) do
 
   create_table "answers", :force => true do |t|
     t.integer  "author_id",   :null => false
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(:version => 20131106003125) do
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "questions", :force => true do |t|
-    t.integer  "author_id",  :null => false
-    t.string   "title",      :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "author_id",      :null => false
+    t.string   "title",          :null => false
+    t.text     "body",           :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "best_answer_id"
   end
 
   add_index "questions", ["author_id"], :name => "index_questions_on_author_id"

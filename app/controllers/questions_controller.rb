@@ -61,4 +61,11 @@ class QuestionsController < ApplicationController
 		redirect_to questions_url
 	end
 
+	def mark_best_answer
+		@question = Question.find(params[:question_id])
+		@question.best_answer_id = params[:answer_id]
+		@question.save!
+		redirect_to question_url(@question)
+	end
+
 end

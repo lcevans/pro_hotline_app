@@ -29,15 +29,23 @@
 
 <% @question.answers.includes(:author).each do |answer| %> 
 	<h4><%= "Answer by #{answer.author.username}" %></h4>
+
+	<% if @question.best_answer_id == answer.id %>
+	  <p>***BEST ANSWER***</p>
+	<% else %>
+  	<% if @question.author_id == current_user_id %>
+	    <%= button_to "Mark as Best Answer", question_mark_answer_url(@question.id, answer.id) %>
+	  <% end %>
+	<% end %>
+
 	<div class="answer-body">
-		<p>
 			<%= answer.body %>
-		</p>
+  </div>
 		<% if (answer.author_id == current_user_id) %>
 		  	<%= button_to "Delete Answer", answer_url(answer), :method => "delete" %>
 		  	<%= button_to "Edit Answer", edit_answer_url(answer), :method => "get" %>
 		<% end %>
-	</div>
+
 <% end %>
 
 <%= link_to "Back", questions_url %>
