@@ -1,5 +1,13 @@
 ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
+  initialize: function () {
+    var that = this;
+
+    this.listenTo(this.model.comments, "add", function () {
+      that.renderCommentView(that.model.comments.last());
+    });
+  },
+
   template: JST['questions/display'],
 
   render: function () {
@@ -14,6 +22,11 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
   	});
   	this.$el.append(renderedContent);
 
+    // Add the New Comment view if user logged in
+    if (ProHotlineApp.currentUser) {
+      this.addNewCommentView();
+    }
+
     // Add the child comments
     this.model.comments.each(function (comment) {
       that.renderCommentView(comment);
@@ -24,7 +37,19 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
       this.addNewAnswerView();
     }
 
+    // Add the Votes view
+    this.renderVotes();
+
   	return this;
+  },
+
+  renderVotes: function () {
+    votesView = new ProHotlineApp.Views.VotesDisplay({
+      model: this.model
+    });
+
+    var dom = this.$el.children("div.votes");
+    votesView.setElement(dom).render();
   },
 
   renderCommentView: function (comment) {
@@ -43,6 +68,16 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
     var dom = this.$el.children("div.new-answer");
     newAnswerView.setElement(dom).displayButton();
+  },
+
+  addNewCommentView: function () {
+    newCommentView = new ProHotlineApp.Views.CommentNew({
+      model: this.model,
+      parentType: "Question"
+    });
+
+    var dom = this.$el.children("div.new-comment");
+    newCommentView.setElement(dom).displayButton();
   }
 
 });

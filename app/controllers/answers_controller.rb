@@ -12,19 +12,9 @@ class AnswersController < ApplicationController
 		@answer = Answer.new(params[:answer])
 		@answer.author_id = current_user_id
 		if @answer.save
-			respond_to do |format|
-				format.html { redirect_to question_url(@answer.question_id) }
-				format.json { render :show }
-			end
+				render :show
 		else
-			respond_to do |format|
-				format.html do 
-					flash[:errors] = @answer.errors.full_messages
-					render :new
-				end
-				format.json { render :json => @answer.errors.full_messages, :status => 422 }
-			end
-
+				render :json => @answer.errors.full_messages, :status => 422
 		end
 	end
 

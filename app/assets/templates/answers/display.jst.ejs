@@ -1,12 +1,7 @@
 
 
 <h4><%= "Answer by " + answer.author.username %></h4>
-<h4>Votes: <%= answer.votes.filter( function (vote) { 
-                 return vote.escape("vote_type") === "UPVOTE";
-               }).length -
-               answer.votes.filter( function (vote) { 
-                 return vote.escape("vote_type") === "DOWNVOTE";
-               }).length %></h4>
+<div class="votes"></div>
 
 <% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
 		  	<button class="delete-answer">Delete Answer</button>
@@ -17,4 +12,5 @@
 </div>
 
 <h4>Comments</h4>
+<div class="new-comment"></div>
 <div class="comments"></div>

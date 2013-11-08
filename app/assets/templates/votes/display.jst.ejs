@@ -1,0 +1,9 @@
+<h4>Votes: <%= candidate.votes.filter( function (vote) { 
+                 return vote.escape("vote_type") === "UPVOTE";
+               }).length -
+               candidate.votes.filter( function (vote) { 
+                 return vote.escape("vote_type") === "DOWNVOTE";
+               }).length %></h4>
+
+<button class="upvote">Upvote</button>
+<button class="downvote">Downvote</button>

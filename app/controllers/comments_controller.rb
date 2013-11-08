@@ -14,28 +14,11 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = Comment.new(params[:comment])
-		@comment.author_id = current_user_id
-
-		# Ugly... refactor later?
-		if !!params[:question_id]
-			@comment.commentable_id = params[:question_id]
-			@comment.commentable_type = "Question"
-			success_action = question_url(params[:question_id])
-			failure_action = question_comments_url(params[:question_id])
-		elsif !!params[:answer_id]
-			@comment.commentable_id = params[:answer_id]
-			@comment.commentable_type = "Answer"
-			question_id = Answer.find(params[:answer_id]).question_id
-			success_action = question_url(question_id)
-			failure_action = answer_comments_url(params[:answer_id]) 
-		end
 
 		if @comment.save
-			redirect_to success_action
+			render :show
 		else
-			flash[:errors] = @comment.errors.full_messages
-			@action = failure_action
-			render :new
+			render :json => @comment.errors.full_messages, :status => 422
 		end
 	end
 

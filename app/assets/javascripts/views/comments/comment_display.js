@@ -18,7 +18,19 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
   	});
   	this.$el.append(renderedContent);
 
+    // Add the Votes view
+    this.renderVotes();
+
   	return this
+  },
+
+  renderVotes: function () {
+    votesView = new ProHotlineApp.Views.VotesDisplay({
+      model: this.model
+    });
+
+    var dom = this.$el.children("div.votes");
+    votesView.setElement(dom).render();
   },
 
   deleteComment: function () {
