@@ -1,0 +1,108 @@
+<h1>Title: <%= @question.title %> </h1>
+<h4>Authored by <%= @question.author.username %></h4>
+<h4>Views: <%= @question.views.count %></h4>
+<h4>Votes: <%= @question.votes.where(:vote_type => "UPVOTE").count -
+               @question.votes.where(:vote_type => "DOWNVOTE").count %></h4>
+
+<% if (!!current_user) %>
+	<%= button_to "Upvote", question_upvote_url(@question.id) %>
+	<%= button_to "Downvote", question_downvote_url(@question.id) %>
+<% end %>
+
+<h2>Body</h2>
+<div class="question-body">
+	<%= @question.body %>
+</div>
+
+<div>
+	<h4>Tags</h4>
+	<ul>
+		<% @question.tags.each do |tag| %>
+		  <li><%= tag.name %></li>
+		<% end %>
+  </ul>
+</div>
+
+<% if (@question.author_id == current_user_id) %>
+	<%= button_to "Delete Question", question_url(@question), :method => "delete" %>
+  <%= button_to "Edit Question", edit_question_url(@question), :method => "get" %>
+<% end %>
+
+<% if (!!current_user) %>
+	<%= link_to "Add comment", new_question_comment_url(@question) %>
+<% end %>
+
+<% @question.comments.each do |comment| %>
+	<div class="comment-body">
+		<%= comment.author.username %>: <%= comment.body %>
+	</div>
+	<% if (comment.author_id == current_user_id) %>
+	  <%= button_to "Delete Comment", comment_url(comment), :method => "delete" %>
+    <%= button_to "Edit Comment", edit_comment_url(comment), :method => "get" %>
+  <% end %>
+<% end %>
+
+<% if (!!current_user) %>
+	<h3><%= link_to "Add Answer", new_question_answer_url(@question) %></h3>
+<% end %>
+
+<h2> Answers </h2>
+
+<div class="answer-section">
+
+<% @question.answers.includes(:author).each do |answer| %> 
+	<h4><%= "Answer by #{answer.author.username}" %></h4>
+
+	<% if @question.best_answer_id == answer.id %>
+	  <p>***BEST ANSWER***</p>
+	<% else %>
+  	<% if @question.author_id == current_user_id %>
+	    <%= button_to "Mark as Best Answer", question_mark_answer_url(@question.id, answer.id) %>
+	  <% end %>
+	<% end %>
+
+	<h4>Votes: <%= answer.votes.where(:vote_type => "UPVOTE").count -
+               answer.votes.where(:vote_type => "DOWNVOTE").count %></h4>
+	
+	<% if (!!current_user) %>
+	  <%= button_to "Upvote", answer_upvote_url(answer.id) %>
+	  <%= button_to "Downvote", answer_downvote_url(answer.id) %>
+	<% end %>
+
+	<div class="answer-body">
+			<%= answer.body %>
+  </div>
+		<% if (answer.author_id == current_user_id) %>
+		  	<%= button_to "Delete Answer", answer_url(answer), :method => "delete" %>
+		  	<%= button_to "Edit Answer", edit_answer_url(answer), :method => "get" %>
+		<% end %>
+
+		<% if (!!current_user) %>
+	  	<%= link_to "Add comment", new_answer_comment_url(answer) %>
+		<% end %>
+
+		<% answer.comments.each do |comment| %>
+		  <div class="comment-body">
+			  <%= comment.author.username %>: <%= comment.body %>
+		  </div>
+
+		  <h4>Votes: <%= comment.votes.where(:vote_type => "UPVOTE").count -
+		                 comment.votes.where(:vote_type => "DOWNVOTE").count %></h4>
+
+		  <% if (!!current_user) %>
+		    <%= button_to "Upvote", comment_upvote_url(comment.id) %>
+		    <%= button_to "Downvote", comment_downvote_url(comment.id) %>
+		  <% end %>
+
+		  <% if (comment.author_id == current_user_id) %>
+		    <%= button_to "Delete Comment", comment_url(comment), :method => "delete" %>
+		    <%= button_to "Edit Comment", edit_comment_url(comment), :method => "get" %>
+		  <% end %>
+		<% end %>
+
+<% end %>
+
+</div>
+
+<br>
+<h3><%= link_to "Back", questions_url %></h3>

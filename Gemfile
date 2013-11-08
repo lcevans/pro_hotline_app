@@ -12,3 +12,6 @@ end
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'backbone-on-rails'
+gem 'rabl'
+gem 'pry-rails'

@@ -8,14 +8,23 @@ class AnswersController < ApplicationController
 	end
 
 	def create
+		# No longer gets the question_id from the params!
 		@answer = Answer.new(params[:answer])
-		@answer.question_id = params[:question_id]
 		@answer.author_id = current_user_id
 		if @answer.save
-			redirect_to question_url(@answer.question_id)
+			respond_to do |format|
+				format.html { redirect_to question_url(@answer.question_id) }
+				format.json { render :json => @answer }
+			end
 		else
-			flash[:errors] = @answer.errors.full_messages
-			render :new
+			respond_to do |format|
+				format.html do 
+					flash[:errors] = @answer.errors.full_messages
+					render :new
+				end
+				format.json { render :json => @answer.errors.full_messages, :status => 422 }
+			end
+
 		end
 	end
 

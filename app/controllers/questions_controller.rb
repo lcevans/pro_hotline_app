@@ -13,9 +13,12 @@ class QuestionsController < ApplicationController
 		if hasnt_viewed(current_user, question_id)
 			View.create!(:user_id => current_user_id, :question_id => question_id)
 		end
+		@question = Question.includes(:votes, :views, :answers).find(question_id)
 
-		@question = Question.includes(:views, :votes).find(question_id)
-		render :show
+		respond_to do |format|
+      format.html { render :show }
+      format.json 
+    end
 	end
 
 	def new
