@@ -10,6 +10,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
+		// Initialize global variables
+		ProHotlineApp.currentUserId = $("span#current-user").attr("data-id")
+		ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
+
 		ProHotlineApp.question = new ProHotlineApp.Models.Question();
 		ProHotlineApp.question.set('id', <%= @question.id %>);
 		ProHotlineApp.question.fetch({

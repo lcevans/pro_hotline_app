@@ -8,6 +8,7 @@ ProHotlineApp.Models.Answer = Backbone.Model.extend({
   },
 
 	parse: function (attributes) {
+
 		this.votes.reset(attributes.votes, {parse: true});
 		delete attributes.votes;
 		this.comments.reset(attributes.comments, {parse: true});

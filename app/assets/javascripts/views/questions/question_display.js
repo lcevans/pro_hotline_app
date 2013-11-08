@@ -2,10 +2,6 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
   template: JST['questions/display'],
 
-  events: {
-    "click button.new-answer": "newAnswer"
-  },
-
   render: function () {
   	var that = this;
 
@@ -24,18 +20,21 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
         comment.author.username + ": " + comment.escape("body") + '</div>');
     });
 
+    // Add the New Answer view if user logged in
+    if (ProHotlineApp.currentUser) {
+      this.addNewAnswerView();
+    }
+
   	return this;
   },
 
-  newAnswer: function (event) {
-
-    var answer = new ProHotlineApp.Models.Answer({question_id: this.model.get("id")});
-    formView = new ProHotlineApp.Views.AnswerForm({
-      model: answer
+  addNewAnswerView: function () {
+    newAnswerView = new ProHotlineApp.Views.AnswerNew({
+      model: this.model
     });
 
-    this.$el.children("div.new-answer").html(formView.render().$el);
-
+    var dom = this.$el.children("div.new-answer");
+    newAnswerView.setElement(dom).displayButton();
   }
 
 });

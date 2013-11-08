@@ -2,6 +2,10 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   template: JST['answers/display'],
 
+  events: {
+    "click button.delete-answer": "deleteAnswer"
+  },
+
   render: function () {
     var that = this;
 
@@ -21,6 +25,29 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
 
   	return this
+  },
+
+  renderCommentView: function (comment) {
+    var commentView = new ProHotlineApp.Views.CommentDisplay({
+      model: answer
+    });
+    this.$answersEl.append(answerView.render().$el);
+  }
+
+  deleteAnswer: function () {
+    var that = this;
+    this.model.destroy({
+      error: function (model, errors) {
+        alert(errors.responseText);
+      },
+      success: function (obj) {
+        that.destroyView();
+      }
+    });
+  },
+
+  destroyView: function () {
+    this.remove();
   }
 
 });

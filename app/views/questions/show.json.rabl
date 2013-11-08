@@ -31,7 +31,7 @@ child :comments do
 end
 
 child :answers do
-  attributes :author_id, :question_id, :body
+  attributes :id, :author_id, :question_id, :body
 
   child :author => :author do
     attributes :id, :username

@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
 		if @answer.save
 			respond_to do |format|
 				format.html { redirect_to question_url(@answer.question_id) }
-				format.json { render :json => @answer }
+				format.json { render :show }
 			end
 		else
 			respond_to do |format|
@@ -47,7 +47,11 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		question_id = @answer.question_id
 		@answer.destroy
-		redirect_to question_url(question_id)
+		
+		respond_to do |format|
+			format.html { redirect_to question_url(question_id) }
+			format.json { render :json => @answer }
+		end
 	end
 
 	# Additional control methods

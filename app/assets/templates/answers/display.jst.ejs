@@ -8,6 +8,10 @@
                  return vote.escape("vote_type") === "DOWNVOTE";
                }).length %></h4>
 
+<% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
+		  	<button class="delete-answer">Delete Answer</button>
+<% } %>
+
 <div class="answer-body">
 	<%= answer.escape("body") %>
 </div>

@@ -1,8 +1,13 @@
 ProHotlineApp.Routers.Question = Backbone.Router.extend({
 
 	initialize: function ($questionEl, $answersEl) {
+		var that = this;
 		this.$questionEl = $questionEl;
 		this.$answersEl = $answersEl;
+		
+    this.listenTo(ProHotlineApp.question.answers, "add", function () {
+    	that.renderAnswerView(ProHotlineApp.question.answers.last());
+    });
 	},
 
 	routes: {
@@ -24,12 +29,15 @@ ProHotlineApp.Routers.Question = Backbone.Router.extend({
 
 		// Display its child Answers
   	ProHotlineApp.question.answers.each(function (answer) {
-  		var answerView = new ProHotlineApp.Views.AnswerDisplay({
-  			model: answer
-  		});
-  		that.$answersEl.append(answerView.render().$el);
+  		that.renderAnswerView(answer);
   	});
+	},
 
+	renderAnswerView: function (answer) {
+		var answerView = new ProHotlineApp.Views.AnswerDisplay({
+			model: answer
+		});
+		this.$answersEl.append(answerView.render().$el);
 	}
 
 });
