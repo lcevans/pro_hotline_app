@@ -1,0 +1,14 @@
+<div class="comment-body">
+	<%= comment.author.username %>: <%= comment.escape("body") %>
+</div>
+<h4>Votes: <%= comment.votes.filter( function (vote) { 
+                 return vote.escape("vote_type") === "UPVOTE";
+               }).length -
+               comment.votes.filter( function (vote) { 
+                 return vote.escape("vote_type") === "DOWNVOTE";
+               }).length %></h4>
+
+<% if (ProHotlineApp.currentUser && comment.author.id == ProHotlineApp.currentUserId) { %>
+		  	<button class="delete-comment">Delete Comment</button>
+<% } %>
+

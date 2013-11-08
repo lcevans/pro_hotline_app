@@ -60,7 +60,10 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		question_id = @comment.question_id
 		@comment.destroy
-		redirect_to question_url(question_id)
+		respond_to do |format|
+			format.html { redirect_to question_url(question_id) }
+			format.json { render :json => @comment }
+		end
 	end
 
 	# Additional control methods

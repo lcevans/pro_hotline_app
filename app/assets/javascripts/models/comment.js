@@ -1,4 +1,7 @@
 ProHotlineApp.Models.Comment = Backbone.Model.extend({
+	
+	urlRoot: "/comments",
+
 	constructor: function() {
     this.votes = new ProHotlineApp.Collections.Votes();
     Backbone.Model.apply(this, arguments);

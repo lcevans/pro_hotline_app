@@ -16,8 +16,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
     // Add the child comments
     this.model.comments.each(function (comment) {
-      that.$el.children("div.comments").append('<div class="comment-body">' + 
-        comment.author.username + ": " + comment.escape("body") + '</div>');
+      that.renderCommentView(comment);
     });
 
     // Add the New Answer view if user logged in
@@ -26,6 +25,15 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     }
 
   	return this;
+  },
+
+  renderCommentView: function (comment) {
+    var commentView = new ProHotlineApp.Views.CommentDisplay({
+      model: comment
+    });
+    var dom = this.$el.children("div.comments");
+    //commentView.setElement(dom).render();
+    dom.append(commentView.render().$el);
   },
 
   addNewAnswerView: function () {

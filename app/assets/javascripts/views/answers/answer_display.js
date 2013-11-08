@@ -20,8 +20,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
     // Add the child comments
     this.model.comments.each(function (comment) {
-      that.$el.children("div.comments").append('<div class="comment-body">' + 
-        comment.author.username + ": " + comment.escape("body") + '</div>');
+      that.renderCommentView(comment);
     });
 
   	return this
@@ -29,10 +28,12 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   renderCommentView: function (comment) {
     var commentView = new ProHotlineApp.Views.CommentDisplay({
-      model: answer
+      model: comment
     });
-    this.$answersEl.append(answerView.render().$el);
-  }
+    var dom = this.$el.children("div.comments");
+    //commentView.setElement(dom).render();
+    dom.append(commentView.render().$el);
+  },
 
   deleteAnswer: function () {
     var that = this;

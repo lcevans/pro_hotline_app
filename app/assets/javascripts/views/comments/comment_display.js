@@ -14,7 +14,7 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
   	// Add the Comment itself
   	renderedContent = this.template({
-  		answer: this.model
+  		comment: this.model
   	});
   	this.$el.append(renderedContent);
 
