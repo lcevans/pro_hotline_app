@@ -5,5 +5,7 @@
                  return vote.escape("vote_type") === "DOWNVOTE";
                }).length %></h4>
 
-<button class="upvote">Upvote</button>
-<button class="downvote">Downvote</button>
+<% if (ProHotlineApp.currentUser) { %>
+	<button class="upvote">Upvote</button>
+	<button class="downvote">Downvote</button>
+<% } %>

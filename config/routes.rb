@@ -28,4 +28,6 @@ ProHotlineApp::Application.routes.draw do
     post "/downvote", :to => "comments#downvote", :as => "downvote"
   end
 
+  resources :votes, :only => [:create, :destroy]
+
 end

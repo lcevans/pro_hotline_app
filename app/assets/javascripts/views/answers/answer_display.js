@@ -67,7 +67,8 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   renderVotes: function () {
     votesView = new ProHotlineApp.Views.VotesDisplay({
-      model: this.model
+      model: this.model,
+      modelType: "Answer"
     });
 
     var dom = this.$el.children("div.votes");
@@ -77,7 +78,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   addNewCommentView: function () {
     newCommentView = new ProHotlineApp.Views.CommentNew({
       model: this.model,
-      parentType: "Answer"
+      modelType: "Answer"
     });
 
     var dom = this.$el.children("div.new-comment");

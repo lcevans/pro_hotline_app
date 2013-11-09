@@ -26,7 +26,8 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
   renderVotes: function () {
     votesView = new ProHotlineApp.Views.VotesDisplay({
-      model: this.model
+      model: this.model,
+      modelType: "Comment"
     });
 
     var dom = this.$el.children("div.votes");
