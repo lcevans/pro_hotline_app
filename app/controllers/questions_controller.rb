@@ -47,14 +47,13 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question = Question.find(params[:id])
-
-		@question.tag_ids = params[:tag_ids]
+		# @question.tag_ids = params[:question][:tag_ids]
 
 		if @question.update_attributes(params[:question])
-			redirect_to question_url(@question)
+			render :show
 		else
 			flash[:errors] = @question.errors.full_messages
-			render :edit
+			render :json => @question.errors.full_messages, :status => 422
 		end
 	end
 
@@ -65,13 +64,6 @@ class QuestionsController < ApplicationController
 	end
 
 	# Additional control methods
-
-	def mark_best_answer
-		@question = Question.find(params[:question_id])
-		@question.best_answer_id = params[:answer_id]
-		@question.save!
-		redirect_to question_url(@question)
-	end
 
 	def upvote
 		Vote.create_or_modify(current_user_id, params[:question_id], "Question", "UPVOTE")

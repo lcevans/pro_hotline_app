@@ -1,9 +1,20 @@
-
-
 <h4><%= "Answer by " + answer.author.username %></h4>
+
+<div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.get("id")) ? "best" : "not-best") %>>
+	<div class="if-best">
+	  <p>***BEST ANSWER***</p>
+  </div>
+  <div class="if-not-best">
+	  <% if (ProHotlineApp.question.get("author_id") == ProHotlineApp.currentUserId) { %>
+	   <button class="mark-best-answer">Mark as Best Answer</button>
+	  <% } %>
+  </div>
+</div>
+
 <div class="votes"></div>
 
 <% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
+		  	<button class="edit-answer">Edit Answer</button>
 		  	<button class="delete-answer">Delete Answer</button>
 <% } %>
 

@@ -11,7 +11,9 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   template: JST['answers/display'],
 
   events: {
-    "click button.delete-answer": "deleteAnswer"
+    "click button.delete-answer": "deleteAnswer",
+    "click button.edit-answer": "edit",
+    "click button.mark-best-answer": "markAsBest"
   },
 
   render: function () {
@@ -22,7 +24,8 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   	// Add the Answer itself
   	renderedContent = this.template({
-  		answer: this.model
+  		answer: this.model,
+      question: ProHotlineApp.question
   	});
   	this.$el.append(renderedContent);
 
@@ -40,6 +43,26 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     this.renderVotes();
 
   	return this
+  },
+
+  markAsBest: function () {
+    var that = this;
+    ProHotlineApp.question.set("best_answer_id", this.model.get("id"));
+    ProHotlineApp.question.save({},{
+      wait: true,
+      error: function (model, error) {
+        alert (error.responseText);
+      },
+      success: function (model) {
+        $("div.best").attr("class", "not-best");
+        that.$el.children("div.not-best").attr("class", "best");
+      }
+    });
+  },
+
+  edit: function () {
+    var dom = this.$el.children("div.answer-body");
+    dom.html("");
   },
 
   renderVotes: function () {

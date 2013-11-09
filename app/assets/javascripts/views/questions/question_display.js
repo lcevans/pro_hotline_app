@@ -43,6 +43,11 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
   	return this;
   },
 
+  edit: function () {
+    var dom = this.$el.children("div.question-body");
+    dom.html("");
+  },
+
   renderVotes: function () {
     votesView = new ProHotlineApp.Views.VotesDisplay({
       model: this.model

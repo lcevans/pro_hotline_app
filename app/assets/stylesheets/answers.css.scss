@@ -1,3 +1,16 @@
+div.if-best {
+	background: green;
+}
+
+div.best div.if-not-best {
+	display: none;
+}
+
+div.not-best div.if-best {
+	display: none;
+}
+
+
 div.answer-body {
 	background: #DDDDDD;
 	border: 1px solid;

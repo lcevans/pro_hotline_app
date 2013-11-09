@@ -22,13 +22,23 @@ ProHotlineApp.Views.VotesDisplay = Backbone.View.extend({
   	return this
   },
 
-  upvote: function () {
 
+// NEED TO FIX THE VOTING!////////////////////////////////////////////
+
+  upvote: function () {
+    var that = this;
+    var oldVote = this.model.votes.find(function (vote) {
+      return (vote.author_id == ProHotlineApp.currentUserId);
+    });
   },
 
   downvote: function () {
 
+  },
+
+  makeVote: function (voteType) {
   }
 
+//////////////////////////////////////////////////////////////
 
 });

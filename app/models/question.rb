@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :title, :body, :author_id
+  attr_accessible :title, :body, :author_id, :best_answer_id
 
   # Validations
 
