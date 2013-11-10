@@ -1,9 +1,17 @@
 ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
-  template: JST['comments/display'],
+  initialize: function () {
+    this.displayTemplate = JST['comments/display'];
+    this.editTemplate = JST['comments/edit_form'];
+  },
+
+  //template: JST['comments/display'],
 
   events: {
-    "click button.delete-comment": "deleteComment"
+    "click button.delete-comment": "deleteComment",
+    "click button.edit-comment": "editComment",
+    "click button.cancel": "cancel",
+    "submit": "updateComment"
   },
 
   render: function () {
@@ -13,7 +21,7 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
   	this.$el.html("");
 
   	// Add the Comment itself
-  	renderedContent = this.template({
+  	renderedContent = this.displayTemplate({
   		comment: this.model
   	});
   	this.$el.append(renderedContent);
@@ -22,6 +30,41 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
     this.renderVotes();
 
   	return this
+  },
+
+  editComment: function () {
+    var that = this;
+
+    // Clear the DOM
+    this.$el.html("");
+    // DANGER DANGER DANGER
+
+    // Add the Edit Form
+    renderedContent = this.editTemplate({
+      comment: this.model,
+    });
+    this.$el.append(renderedContent);
+  },
+
+  updateComment: function (event) {
+    var that = this;
+    event.preventDefault();
+    var payload = $(event.target).serializeJSON();
+
+    this.model.save(payload.comment, {
+      wait: true,
+      error: function (model, error) {
+        $("div.errors").html("ERROR: ");
+        $("div.errors").append(error.responseText);
+      },
+      success: function (model) {
+        that.render(); ///WARNING!
+      }
+    })
+  },
+
+  cancel: function () {
+    this.render();
   },
 
   renderVotes: function () {

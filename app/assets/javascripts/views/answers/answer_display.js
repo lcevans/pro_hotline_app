@@ -2,18 +2,22 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   initialize: function () {
     var that = this;
+    this.displayTemplate = JST['answers/display'];
+    this.editTemplate = JST['answers/edit_form'];
 
     this.listenTo(this.model.comments, "add", function () {
       that.renderCommentView(that.model.comments.last());
     });
   },
 
-  template: JST['answers/display'],
+  //template: JST['answers/display'],
 
   events: {
     "click button.delete-answer": "deleteAnswer",
-    "click button.edit-answer": "edit",
-    "click button.mark-best-answer": "markAsBest"
+    "click button.edit-answer": "editAnswer",
+    "click button.cancel": "cancel",
+    "click button.mark-best-answer": "markAsBest",
+    "submit": "updateAnswer"
   },
 
   render: function () {
@@ -23,7 +27,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   	this.$el.html("");
 
   	// Add the Answer itself
-  	renderedContent = this.template({
+  	renderedContent = this.displayTemplate({
   		answer: this.model,
       question: ProHotlineApp.question
   	});
@@ -60,9 +64,39 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
   },
 
-  edit: function () {
-    var dom = this.$el.children("div.answer-body");
-    dom.html("");
+  editAnswer: function () {
+    var that = this;
+
+    // Clear the DOM
+    this.$el.html("");
+    // DANGER DANGER DANGER
+
+    // Add the Edit Form
+    renderedContent = this.editTemplate({
+      answer: this.model,
+    });
+    this.$el.append(renderedContent);
+  },
+
+  updateAnswer: function (event) {
+    var that = this;
+    event.preventDefault();
+    var payload = $(event.target).serializeJSON();
+
+    this.model.save(payload.answer, {
+      wait: true,
+      error: function (model, error) {
+        $("div.errors").html("ERROR: ");
+        $("div.errors").append(error.responseText);
+      },
+      success: function (model) {
+        that.render(); //WARNING!!
+      }
+    })
+  },
+
+  cancel: function () {
+    this.render();
   },
 
   renderVotes: function () {

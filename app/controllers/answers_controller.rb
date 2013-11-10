@@ -26,10 +26,9 @@ class AnswersController < ApplicationController
 	def update
 		@answer = Answer.find(params[:id])
 		if @answer.update_attributes(params[:answer])
-			redirect_to question_url(@answer.question_id)
+			render :show
 		else
-			flash[:errors] = @answer.errors.full_messages
-			render :edit
+			render :json => @answer.errors.full_messages, :status => 422
 		end
 	end
 

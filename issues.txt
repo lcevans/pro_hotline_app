@@ -1,0 +1,3 @@
+1) Am I removing the views properly? Memory leak check!
+
+2) This is especially an issue with the edit form for answer. I am wiping out the DOM when I switch forms but I don't believe I am properly removing all the sub views...
