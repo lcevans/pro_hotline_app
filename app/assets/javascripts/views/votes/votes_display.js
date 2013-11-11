@@ -73,7 +73,7 @@ ProHotlineApp.Views.VotesDisplay = Backbone.View.extend({
     var that = this;
     this.model.votes.create({
       user_id: ProHotlineApp.currentUserId,
-      votable_id: this.model.get("id"),
+      votable_id: this.model.id,
       votable_type: this.modelType,
       vote_type: voteType,
     },{

@@ -1,4 +1,4 @@
-ProHotlineApp.Routers.Question = Backbone.Router.extend({
+ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 
 	initialize: function ($questionEl, $answersEl) {
 		var that = this;

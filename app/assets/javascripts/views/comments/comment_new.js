@@ -33,7 +33,7 @@ ProHotlineApp.Views.CommentNew = Backbone.View.extend({
   	event.preventDefault();
   	var payload = $(event.target).serializeJSON();
   	payload.comment.author_id = ProHotlineApp.currentUserId
-    payload.comment.commentable_id = this.model.get("id");
+    payload.comment.commentable_id = this.model.id;
     payload.comment.commentable_type = this.modelType;
 
   	this.model.comments.create(payload.comment, {

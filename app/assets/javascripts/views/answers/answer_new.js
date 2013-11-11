@@ -29,7 +29,7 @@ ProHotlineApp.Views.AnswerNew = Backbone.View.extend({
   	event.preventDefault();
   	var payload = $(event.target).serializeJSON();
   	payload.answer.author_id = ProHotlineApp.currentUserId
-    payload.answer.question_id = this.model.get("id");
+    payload.answer.question_id = this.model.id;
 
   	this.model.answers.create(payload.answer, {
       wait: true,

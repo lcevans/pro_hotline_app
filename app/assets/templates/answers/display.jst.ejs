@@ -1,6 +1,6 @@
 <h4><%= "Answer by " + answer.author.username %></h4>
 
-<div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.get("id")) ? "best" : "not-best") %>>
+<div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.id) ? "best" : "not-best") %>>
 	<div class="if-best">
 	  <p>***BEST ANSWER***</p>
   </div>

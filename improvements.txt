@@ -1,0 +1,9 @@
+-Javascript up the questions index
+-Devise?
+-Add points?
+-Add bounties
+-Sorting algorithm
+-Tags! Implement a good tag system.
+-Limit on Tags for index page? In any case?
+-Pagination?
+-click on a user to see their authored questions? Info page?

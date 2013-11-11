@@ -51,7 +51,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   markAsBest: function () {
     var that = this;
-    ProHotlineApp.question.set("best_answer_id", this.model.get("id"));
+    ProHotlineApp.question.set("best_answer_id", this.model.id);
     ProHotlineApp.question.save({},{
       wait: true,
       error: function (model, error) {

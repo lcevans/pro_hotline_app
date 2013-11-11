@@ -1,9 +1,4 @@
-<h4>Votes: <%= candidate.votes.filter( function (vote) { 
-                 return vote.escape("vote_type") === "UPVOTE";
-               }).length -
-               candidate.votes.filter( function (vote) { 
-                 return vote.escape("vote_type") === "DOWNVOTE";
-               }).length %></h4>
+<h4>Votes: <%= candidate.voteCount() %></h4>
 
 <% if (ProHotlineApp.currentUser) { %>
 	<button class="upvote">Upvote</button>

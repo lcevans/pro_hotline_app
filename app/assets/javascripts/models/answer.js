@@ -1,6 +1,18 @@
 ProHotlineApp.Models.Answer = Backbone.Model.extend({
 	urlRoot: "/answers",
 
+	voteCount: function () {
+		var upvotes = this.votes.filter( function (vote) { 
+			return vote.escape("vote_type") === "UPVOTE";
+		}).length ;
+
+    var downvotes = this.votes.filter( function (vote) { 
+    	return vote.escape("vote_type") === "DOWNVOTE";
+    }).length;
+
+    return upvotes - downvotes;
+	},
+
 	constructor: function() {
     this.votes = new ProHotlineApp.Collections.Votes();
     this.comments = new ProHotlineApp.Collections.Comments();

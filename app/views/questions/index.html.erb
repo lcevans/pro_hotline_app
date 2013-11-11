@@ -1,13 +1,23 @@
 <h1>Questions Index</h1>
 
-<ul>
-<% @questions.each do |question| %>
-  <li>
-  	<%= link_to question.title, question_url(question) %> -- Authored by <%= question.author.username %>
-  </li>
-<% end %>
-</ul>
-
 <% if (!!current_user) %>
-	<%= link_to "Create New Question", new_user_question_url(current_user.id) %>
+	<%= link_to "Ask a Question", new_user_question_url(current_user.id) %>
 <% end %>
+
+<ul class="questions"></ul>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		// Initialize global variables
+		ProHotlineApp.currentUserId = $("span#current-user").attr("data-id")
+		ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
+
+		ProHotlineApp.questions = new ProHotlineApp.Collections.Questions();
+		ProHotlineApp.questions.fetch({
+			success: function () {
+				new ProHotlineApp.Routers.QuestionsIndex($("ul.questions"));
+				Backbone.history.start();
+			}
+		});	
+	});
+</script>

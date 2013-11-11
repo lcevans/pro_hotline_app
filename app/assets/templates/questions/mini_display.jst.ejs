@@ -1,0 +1,15 @@
+<li class="question">
+	<span>Votes: <%= question.voteCount() %></span>
+	<span>Answers: <%= question.answers.length %></span>
+	<span>Views: <%= question.viewCount %></span>
+	<a href="/questions/<%= question.escape("id")%>">
+	  <%= question.escape("title") %> -- <%= question.author.username %>
+	</a>
+	<span>Created: <%= question.createdAt() %></span>
+	<ul class="tags">
+		<% question.tags.each(function (tag) { %>
+		  <li class="tag"><%= tag.escape("name") %></li>
+		<% }); %>
+  </ul>
+</li>
+<br>

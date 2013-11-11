@@ -7,7 +7,7 @@
 	  <p>
 	  <label for="answer_body">Body</label>
 	  <textarea id="answer_body"
-	            name="answer[body]"></textarea>
+	            name="answer[body]"><%= answer.escape("body")%></textarea>
 	  </p>
 
 	  <input type="submit" value="Update Answer">

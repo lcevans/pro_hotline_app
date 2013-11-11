@@ -6,7 +6,8 @@
 	  <p>
 	  <input type="text"
 	         id="comment_body"
-	         name="comment[body]">
+	         name="comment[body]"
+	         value="<%= comment.escape("body") %>">
 	  </p>
 
 	  <input type="submit" value="Update Comment">

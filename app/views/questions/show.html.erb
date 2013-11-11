@@ -18,7 +18,7 @@
 		ProHotlineApp.question.set('id', <%= @question.id %>);
 		ProHotlineApp.question.fetch({
 			success: function () {
-				new ProHotlineApp.Routers.Question($("div.question"), $("div.answers"));
+				new ProHotlineApp.Routers.QuestionShow($("div.question"), $("div.answers"));
 				Backbone.history.start();
 			}
 		});	
