@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		// Initialize global variables
-		ProHotlineApp.currentUserId = $("span#current-user").attr("data-id")
+		ProHotlineApp.currentUserId = $("#current-user").attr("data-id")
 		ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
 
 		ProHotlineApp.questions = new ProHotlineApp.Collections.Questions();

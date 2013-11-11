@@ -16,8 +16,15 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 	},
 
 	routes: {
-		"": "display"
+		"": "display",
+		//":id": "jumpToAnswer"
 	},
+
+	//jumpToAnswer: function (answerId) {
+	//	this.display();
+  //  window.location.hash = ("answer-id-" + answerId); 
+  //  window.location.hash = (""); 
+	//},
 
 	display: function () {
 		var that = this;

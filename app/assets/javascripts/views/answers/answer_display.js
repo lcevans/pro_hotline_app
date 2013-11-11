@@ -2,15 +2,14 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   initialize: function () {
     var that = this;
-    this.displayTemplate = JST['answers/display'];
-    this.editTemplate = JST['answers/edit_form'];
 
     this.listenTo(this.model.comments, "add", function () {
       that.renderCommentView(that.model.comments.last());
     });
   },
 
-  //template: JST['answers/display'],
+  displayTemplate: JST['answers/display'],
+  editTemplate: JST['answers/edit_form'],
 
   events: {
     "click button.delete-answer": "deleteAnswer",
@@ -22,6 +21,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   render: function () {
     var that = this;
+    alert("rendered Answer Display");
 
   	// Clear the DOM
   	this.$el.html("");
@@ -60,6 +60,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
       success: function (model) {
         $("div.best").attr("class", "not-best");
         that.$el.children("div.not-best").attr("class", "best");
+        //that.render(); // DANGER!!!
       }
     });
   },
@@ -124,7 +125,6 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
       model: comment
     });
     var dom = this.$el.children("div.comments");
-    //commentView.setElement(dom).render();
     dom.append(commentView.render().$el);
   },
 

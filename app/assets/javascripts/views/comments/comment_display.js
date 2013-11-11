@@ -1,11 +1,7 @@
 ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
-  initialize: function () {
-    this.displayTemplate = JST['comments/display'];
-    this.editTemplate = JST['comments/edit_form'];
-  },
-
-  //template: JST['comments/display'],
+  displayTemplate: JST['comments/display'],
+  editTemplate: JST['comments/edit_form'],
 
   events: {
     "click button.delete-comment": "deleteComment",

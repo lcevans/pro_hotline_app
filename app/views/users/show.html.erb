@@ -1,3 +1,19 @@
 <h1><%= @user.username %></h1>
 
-<p>Hello, dear user!</p>
+<p>Joined on <%= @user.created_at %></p>
+<p>Authored <%= @user.authored_questions.count %> Questions </p>
+<ul>
+<% @user.authored_questions.try(:each) do |question| %>
+	<li>
+		<%= link_to question.title, question_url(question) %>
+	</li>
+<% end %>
+</ul>
+<p>Authored <%= @user.authored_answers.count %> Answers </p>
+<ul>
+<% @user.authored_answers.includes(:question).try(:each) do |answer| %>
+	<li>
+		<%= link_to answer.question.title, question_url(answer.question, :anchor => answer.id) %>
+	</li>
+<% end %>
+</ul>

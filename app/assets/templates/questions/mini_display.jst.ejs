@@ -3,7 +3,11 @@
 	<span>Answers: <%= question.answers.length %></span>
 	<span>Views: <%= question.viewCount %></span>
 	<a href="/questions/<%= question.escape("id")%>">
-	  <%= question.escape("title") %> -- <%= question.author.username %>
+	  <%= question.escape("title") %> 
+	</a>
+	--
+	<a href="/users/<%= question.author.id %>">
+	  <%= question.author.username %>
 	</a>
 	<span>Created: <%= question.createdAt() %></span>
 	<ul class="tags">

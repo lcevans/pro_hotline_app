@@ -12,6 +12,7 @@ ProHotlineApp.Views.VotesDisplay = Backbone.View.extend({
   },
 
   render: function () {
+    console.log(this.modelType)
     var that = this;
 
   	// Clear the DOM
