@@ -13,3 +13,6 @@
  *= require font-awesome
  */
 
+.gravatar {
+	border-radius: 5px;
+}

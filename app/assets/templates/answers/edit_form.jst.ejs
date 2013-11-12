@@ -1,18 +1,48 @@
-<div class="edit-answer">
+<div class="answer-content clearfix">
+  <div class="answer-header">
+    <h4><%= "Answer by " + answer.author.username %></h4>
+  </div>
+  <div class="answer-sidebar">
+    <div class="answer-votes"></div>
 
-  <h4><%= "Answer by " + answer.author.username %></h4>
-  <div class="errors"></div>
+    <div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.id) ? "best" : "not-best") %>>
+      <div class="if-best">
+        <p><i class="fa fa-check"></i></p>
+      </div>
+      <div class="if-not-best">
+        <% if (ProHotlineApp.question.get("author_id") == ProHotlineApp.currentUserId) { %>
+          <i class="mark-best-answer fa fa-check"></i>
+        <% } %>
+      </div>
+    </div>
+  </div>
 
-  <form id="new-answer-form">
-	  <p>
-	  <label for="answer_body">Body</label>
-	  <textarea id="answer_body"
-	            name="answer[body]"><%= answer.escape("body")%></textarea>
-	  </p>
+  <div class="answer-the-rest">
 
-	  <input type="submit" value="Update Answer">
-  </form>
-  <button class="cancel">Cancel</button>
+    <div class="edit-answer-div">
+
+      <h4><%= "Answer by " + answer.author.username %></h4>
+      <div class="errors"></div>
+
+      <form id="edit-answer-form">
+      <p>
+        <label for="answer_body">Body</label>
+        <textarea id="answer_body"
+        name="answer[body]"><%= answer.escape("body")%></textarea>
+      </p>
+
+      <input type="submit" value="Update Answer">
+      </form>
+      <button class="cancel">Cancel</button>
   
+    </div>
+
+
+    <ul class="comments"></ul>
+    <div class="new-comment"></div>
+  </div>
 </div>
+
+
+
 

@@ -9,3 +9,7 @@
 6) pluralization issues?
 
 7) Jump to anchor tag issue
+
+8) Doesn't update the number of answers when creating a new one
+
+9) Deal with what happens after you delete a User. What happens to all the orphaned links? The questions shouldnt disappear. It should just say "deleted" in place of user...

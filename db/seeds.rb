@@ -9,7 +9,7 @@ Tag.create(name: "Megaman 2")
 Tag.create(name: "Bubble Bobble")
 Tag.create(name: "Super Mario Bros")
 
-chris = User.create!(username: "Chris", password: "password")
-dan = User.create!(username: "Dan", password: "password")
-steve = User.create!(username: "Steve", password: "password")
+chris = User.create!(username: "Chris", password: "password", email: "lawrence.c.evans@gmail.com")
+dan = User.create!(username: "Dan", password: "password", email: "djquan@gmail.com")
+steve = User.create!(username: "Steve", password: "password", email: "stevenjli@gmail.com")
 

@@ -66,7 +66,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
     this.subviews.push(commentView);
 
-    var dom = this.$("div.comments");
+    var dom = this.$(".comments");
     dom.append(commentView.render().$el);
   },
 

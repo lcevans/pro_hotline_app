@@ -1,6 +1,16 @@
-<h1><%= @user.username %></h1>
+<div class="user-info">
+  <h1><%= @user.username %></h1>
+  <%= gravatar_for(@user) %>
+  <p>Joined on <%= @user.created_at %></p>
+</div>
 
-<p>Joined on <%= @user.created_at %></p>
+<div class="profile">
+<h2>Profile</h2>
+<div class="profile-body">
+	<%= @user.profile %>
+</div>
+</div>
+
 <p>Authored <%= @user.authored_questions.count %> Questions </p>
 <ul>
 <% @user.authored_questions.try(:each) do |question| %>

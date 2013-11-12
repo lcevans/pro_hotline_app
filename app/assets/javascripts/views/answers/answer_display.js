@@ -12,8 +12,8 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   editTemplate: JST['answers/edit_form'],
 
   events: {
-    "click button.delete-answer": "deleteAnswer",
-    "click button.edit-answer": "editAnswer",
+    "click .delete-answer": "deleteAnswer",
+    "click .edit-answer": "editAnswer",
     "click button.cancel": "cancel",
     "click .mark-best-answer": "markAsBest",
     "submit": "updateAnswer"
@@ -70,13 +70,21 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
     // Clear the DOM
     this.$el.html("");
-    // DANGER DANGER DANGER
+    this.removeSubviews();
 
     // Add the Edit Form
     renderedContent = this.editTemplate({
       answer: this.model,
     });
     this.$el.append(renderedContent);
+
+    // Add the child comments
+    //this.model.comments.each(function (comment) {
+    //  that.renderCommentView(comment);
+    //});
+
+    // Add the Votes view
+    this.renderVotes();
   },
 
   updateAnswer: function (event) {
@@ -128,7 +136,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
     this.subviews.push(commentView);
 
-    var dom = this.$("div.comments");
+    var dom = this.$(".comments");
     dom.append(commentView.render().$el);
   },
 

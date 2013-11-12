@@ -1,5 +1,7 @@
 ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
+  tagName: 'li class="comment-body"',
+
   displayTemplate: JST['comments/display'],
   editTemplate: JST['comments/edit_form'],
 

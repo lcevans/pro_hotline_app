@@ -1,4 +1,19 @@
-div.comment-body {
+.comments {
+	list-style: none;
+}
+
+.comment-body:nth-child(odd){
+	background: #EEEEEE;
+	width: 100%;
+}
+
+.comment-body:nth-child(even){
+	background: #FFFFFF;
+	width: 100%;
+}
+
+
+.ccomment-body {
 	background: #EEEEEE;
 	border-top: 1px solid;
 	width: 100%;
@@ -11,4 +26,5 @@ div.comment-votes {
 
 .comment-body .edit-tools {
 	float: right;
+	cursor: pointer;
 }
