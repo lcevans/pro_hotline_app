@@ -8,11 +8,6 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
     this.listenTo(ProHotlineApp.question.answers, "add", function () {
     	that.renderAnswerView(ProHotlineApp.question.answers.last());
     });
-
-    //this.listenTo(ProHotlineApp.question.comments, "add", function () {
-      //alert("yoyo ma");
-      //that.renderCommentView(ProHotlineApp.question.comments.last());
-    //});
 	},
 
 	routes: {

@@ -22,8 +22,9 @@ ProHotlineApp.Routers.QuestionsIndex = Backbone.Router.extend({
 	},
 
 	renderQuestionMiniView: function (question) {
+
 		var questionView = new ProHotlineApp.Views.QuestionMiniDisplay({
-			model: question
+			model: question,
 		});
 		this.$questionsEl.append(questionView.render().$el);
 	}

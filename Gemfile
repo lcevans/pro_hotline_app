@@ -15,3 +15,5 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'backbone-on-rails'
 gem 'rabl'
 gem 'pry-rails'
+gem "twitter-bootstrap-rails", "~> 2.2.8"
+gem "font-awesome-rails"

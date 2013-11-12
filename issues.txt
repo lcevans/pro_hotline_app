@@ -1,10 +1,5 @@
 1) Am I removing the views properly? Memory leak check!
 
-1.5) Should I be storing my subviews as variables so that I can have access to them later to remove them?
-
-2) This is especially an issue with the edit form for answer. I am wiping out the DOM when I switch forms but I don't believe I am properly removing all the sub views...
-
-3) DRY up the voteCount function (it is in each of the models but maybe a mixin?)
 4) Fix createdAt function. (This will involve figuring out how Javascript dates work)
 
 5) I think I am pushing my secret token to github?

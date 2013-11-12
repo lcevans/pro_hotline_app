@@ -10,9 +10,12 @@ ProHotlineApp.Views.QuestionMiniDisplay = Backbone.View.extend({
 
   	// Add the question itself
   	renderedContent = this.template({
-  		question: this.model
+  		question: this.model,
+      answered: that.model.answers.some(function (answer) {
+        return (answer.id == that.model.get("best_answer_id"));
+      })
   	});
-  	this.$el.append(renderedContent);
+  	this.$el.html(renderedContent);
 
   	return this;
   },

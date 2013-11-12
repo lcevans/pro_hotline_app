@@ -15,6 +15,7 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
   	// Clear the DOM
   	this.$el.html("");
+    this.removeSubviews();
 
   	// Add the Comment itself
   	renderedContent = this.displayTemplate({
@@ -64,10 +65,11 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
   },
 
   renderVotes: function () {
-    votesView = new ProHotlineApp.Views.VotesDisplay({
+    var votesView = new ProHotlineApp.Views.VotesDisplay({
       model: this.model,
       modelType: "Comment"
     });
+    this.subviews.push(votesView);
 
     var dom = this.$el.children("div.votes");
     votesView.setElement(dom).render();
@@ -87,6 +89,21 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
   destroyView: function () {
     this.remove();
-  }
+  },
 
+  // Dealing with garbage collection
+
+  remove: function () {
+    this.removeSubviews();
+    Backbone.View.prototype.remove.call(this);
+  },
+
+  removeSubviews: function () {
+    if (this.subviews) {
+      this.subviews.forEach( function (subview) {
+        subview.remove();
+      });
+    }
+    this.subviews = [];
+  }
 });

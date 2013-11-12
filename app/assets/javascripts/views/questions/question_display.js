@@ -15,6 +15,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
   	// Wipe the DOM clean
   	this.$el.html("");
+    this.removeSubviews();
 
   	// Add the question itself
   	renderedContent = this.template({
@@ -24,17 +25,17 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
     // Add the New Comment view if user logged in
     if (ProHotlineApp.currentUser) {
-      this.addNewCommentView();
+      this.renderNewCommentView();
     }
 
-    // Add the child comments
+    // Add the child comments  /COMEBACK
     this.model.comments.each(function (comment) {
       that.renderCommentView(comment);
     });
 
     // Add the New Answer view if user logged in
     if (ProHotlineApp.currentUser) {
-      this.addNewAnswerView();
+      this.renderNewAnswerView();
     }
 
     // Add the Votes view
@@ -49,10 +50,11 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
   },
 
   renderVotes: function () {
-    votesView = new ProHotlineApp.Views.VotesDisplay({
+    var votesView = new ProHotlineApp.Views.VotesDisplay({
       model: this.model,
       modelType: "Question"
     });
+    this.subviews.push(votesView);
 
     var dom = this.$el.children("div.votes");
     votesView.setElement(dom).render();
@@ -62,28 +64,47 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     var commentView = new ProHotlineApp.Views.CommentDisplay({
       model: comment
     });
+    this.subviews.push(commentView);
+
     var dom = this.$el.children("div.comments");
-    //commentView.setElement(dom).render();
     dom.append(commentView.render().$el);
   },
 
-  addNewAnswerView: function () {
-    newAnswerView = new ProHotlineApp.Views.AnswerNew({
+  renderNewAnswerView: function () {
+    var newAnswerView = new ProHotlineApp.Views.AnswerNew({
       model: this.model
     });
+    this.subviews.push(newAnswerView);
 
     var dom = this.$el.children("div.new-answer");
     newAnswerView.setElement(dom).displayButton();
   },
 
-  addNewCommentView: function () {
-    newCommentView = new ProHotlineApp.Views.CommentNew({
+  renderNewCommentView: function () {
+    var newCommentView = new ProHotlineApp.Views.CommentNew({
       model: this.model,
       modelType: "Question"
     });
+    this.subviews.push(newCommentView);
 
     var dom = this.$el.children("div.new-comment");
     newCommentView.setElement(dom).displayButton();
+  },
+
+  // Dealing with garbage collection
+
+  remove: function () {
+    this.removeSubviews();
+    Backbone.View.prototype.remove.call(this);
+  },
+
+  removeSubviews: function () {
+    if (this.subviews) {
+      this.subviews.forEach( function (subview) {
+        subview.remove();
+      });
+    }
+    this.subviews = [];
   }
 
 });

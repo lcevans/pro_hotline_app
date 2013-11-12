@@ -1,8 +1,30 @@
-<li class="question">
-	<span>Votes: <%= question.voteCount() %></span>
-	<span>Answers: <%= question.answers.length %></span>
-	<span>Views: <%= question.viewCount %></span>
-	<a href="/questions/<%= question.escape("id")%>">
+<li class="question-mini">
+	<div class="item side-item">
+	  <div class="sub-item">
+	    <%= question.voteCount() %>
+	  </div>
+	  <div class="sub-item">
+	    Votes
+	  </div>
+	</div>
+	<div class="item side-item" data-best="<%= (answered ? "true" : "") %>">
+	  <div class="sub-item">
+	    <%= question.answers.length %>
+	  </div>
+	  <div class="sub-item">
+	    Answers
+	  </div>
+	</div>
+	<div class="item side-item">
+	  <div class="sub-item">
+	    <%= question.viewCount %>
+	  </div>
+	  <div class="sub-item">
+	    Views
+	  </div>
+	</div>
+	<div class="item">
+	<a href="/questions/<%= question.escape("id")%>" class="lead">
 	  <%= question.escape("title") %> 
 	</a>
 	--
@@ -12,8 +34,8 @@
 	<span>Created: <%= question.createdAt() %></span>
 	<ul class="tags">
 		<% question.tags.each(function (tag) { %>
-		  <li class="tag"><%= tag.escape("name") %></li>
+		  <li class="tag label label-info"><%= tag.escape("name") %></li>
 		<% }); %>
   </ul>
+  <div>
 </li>
-<br>

@@ -21,10 +21,10 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
   render: function () {
     var that = this;
-    alert("rendered Answer Display");
 
   	// Clear the DOM
   	this.$el.html("");
+    this.removeSubviews();
 
   	// Add the Answer itself
   	renderedContent = this.displayTemplate({
@@ -101,20 +101,22 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   },
 
   renderVotes: function () {
-    votesView = new ProHotlineApp.Views.VotesDisplay({
+    var votesView = new ProHotlineApp.Views.VotesDisplay({
       model: this.model,
       modelType: "Answer"
     });
+    this.subviews.push(votesView);
 
     var dom = this.$el.children("div.votes");
     votesView.setElement(dom).render();
   },
 
   addNewCommentView: function () {
-    newCommentView = new ProHotlineApp.Views.CommentNew({
+    var newCommentView = new ProHotlineApp.Views.CommentNew({
       model: this.model,
       modelType: "Answer"
     });
+    this.subviews.push(newCommentView);
 
     var dom = this.$el.children("div.new-comment");
     newCommentView.setElement(dom).displayButton();
@@ -124,6 +126,8 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     var commentView = new ProHotlineApp.Views.CommentDisplay({
       model: comment
     });
+    this.subviews.push(commentView);
+
     var dom = this.$el.children("div.comments");
     dom.append(commentView.render().$el);
   },
@@ -135,13 +139,24 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
         alert(errors.responseText);
       },
       success: function (obj) {
-        that.destroyView();
+        that.remove();
       }
     });
   },
 
-  destroyView: function () {
-    this.remove();
-  }
+  // Dealing with garbage collection
 
+  remove: function () {
+    this.removeSubviews();
+    Backbone.View.prototype.remove.call(this);
+  },
+
+  removeSubviews: function () {
+    if (this.subviews) {
+      this.subviews.forEach( function (subview) {
+        subview.remove();
+      });
+    }
+    this.subviews = [];
+  }
 });

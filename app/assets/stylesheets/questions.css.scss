@@ -4,3 +4,47 @@ div.question-body {
 	width: 50%;
 	height: 200px;
 }
+
+.questions {
+	margin: 20px 0px 0px 50px;
+	width: 100%;
+}
+
+.question-mini {
+	background-color: #EEEEEE;
+	width: 80%;
+	border: 1px solid;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.question-mini .item {
+
+	padding: 0px 3px 0px 3px;
+	float: left;
+	margin-bottom: 0px;
+}
+
+.question-mini .side-item {
+
+	border-right: 1px solid;
+	float: left;
+}
+
+.question-mini .side-item[data-best="true"] {
+	background-color: #BCF5A9;
+	box-shadow: 0px 0px 5px 5px #FAC8DD;
+}
+
+.question-mini .item .sub-item{
+	text-align: center;
+	height: 25px;
+}
+
+.btn-new-question {
+	margin: 0px 0px 0px 50px;
+}
+
+#questions-index-title {
+	text-align: center;
+}

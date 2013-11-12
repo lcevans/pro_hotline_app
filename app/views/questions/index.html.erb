@@ -1,7 +1,11 @@
-<h1>Questions Index</h1>
+<!-- <image src="images/thumbs_up.jpg"></image> -->
+
+
+<h1 id="questions-index-title">Questions</h1>
 
 <% if (!!current_user) %>
-	<%= link_to "Ask a Question", new_user_question_url(current_user.id) %>
+	<%= link_to "Ask a Question", new_user_question_url(current_user.id), 
+	                              :class => "btn btn-default btn-wide btn-info btn-new-question" %>
 <% end %>
 
 <ul class="questions"></ul>
@@ -15,6 +19,7 @@
 		ProHotlineApp.questions = new ProHotlineApp.Collections.Questions();
 		ProHotlineApp.questions.fetch({
 			success: function () {
+				ProHotlineApp.questions.sort();
 				new ProHotlineApp.Routers.QuestionsIndex($("ul.questions"));
 				Backbone.history.start();
 			}
