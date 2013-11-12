@@ -1,23 +1,73 @@
-div.if-best {
-	background: green;
+div.answer {
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
-div.best div.if-not-best {
-	display: none;
+div.answer-content {
+	max-width: 1000px;
+	margin: 12px auto;
+	border: 1px solid;
+	background: #FAFAFA;
 }
 
-div.not-best div.if-best {
-	display: none;
+div.answer-header {
 }
 
+div.answer-sidebar {
+	width: 13%;
+	display: inline-block;
+}
+
+div.answer-the-rest {
+	width: 85%;
+	margin-right: 1%;
+	float: right;
+}
 
 div.answer-body {
-	background: #DDDDDD;
-	border: 1px solid;
-	width: 50%;
-	height: 100px;
+	background: #EEEEEE;
+	min-height: 200px;
 }
 
-div.answer-section{
+div.answer-info {
+}
+
+div.answer-author-info {
+	float: right;
+}
+
+.answer-the-rest .edit-tools {
+	float: right;
+	margin-right: 7px;
+}
+
+
+
+.best, .not-best {
+	margin-top: 10px;
+}
+
+.mark-best-answer {
+	cursor: pointer;
+}
+
+.if-best {
+	color: green;
+	text-align: center;
+}
+
+.if-not-best {
+	text-align: center;
+}
+
+.best .if-not-best {
+	display: none;
+}
+
+.not-best .if-best {
+	display: none;
+}
+
+.answer-section{
 	margin: 0px 0px 0px 50px
 }

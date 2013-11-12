@@ -1,30 +1,44 @@
-
-<a name="answer-id-<%= answer.id %>"></a>
-
-<h4><%= "Answer by " + answer.author.username %></h4>
-
-<div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.id) ? "best" : "not-best") %>>
-	<div class="if-best">
-	  <p>***BEST ANSWER***</p>
+<div class="answer-content clearfix">
+  <div class="answer-header">
+    <h4><%= "Answer by " + answer.author.username %></h4>
   </div>
-  <div class="if-not-best">
-	  <% if (ProHotlineApp.question.get("author_id") == ProHotlineApp.currentUserId) { %>
-	   <button class="mark-best-answer">Mark as Best Answer</button>
-	  <% } %>
+  <div class="answer-sidebar">
+    <div class="answer-votes"></div>
+
+    <div class=<%= ((ProHotlineApp.question.get("best_answer_id") == answer.id) ? "best" : "not-best") %>>
+      <div class="if-best">
+        <p><i class="fa fa-check"></i></p>
+      </div>
+      <div class="if-not-best">
+        <% if (ProHotlineApp.question.get("author_id") == ProHotlineApp.currentUserId) { %>
+          <i class="mark-best-answer fa fa-check"></i>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-the-rest">
+
+  	<div class = "answer-body">
+  	  <%= answer.escape("body") %>
+  	</div>
+    <div class="answer-info clearfix">
+
+      <div class="answer-author-info">
+        Authored by <%= answer.author.username %>
+      </div>
+
+      <div class="edit-tools">
+	      <% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
+  	      <button class="edit-answer fa fa-edit"></button>
+  	      <button class="delete-answer fa fa-trash-o"></button>
+	      <% } %>
+	    </div>
+    </div> 
+
+    <div class="comments"></div>
+    <div class="new-comment"></div>
   </div>
 </div>
 
-<div class="answer-votes"></div>
 
-<% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
-		  	<button class="edit-answer">Edit Answer</button>
-		  	<button class="delete-answer">Delete Answer</button>
-<% } %>
-
-<div class="answer-body">
-	<%= answer.escape("body") %>
-</div>
-
-<h4>Comments</h4>
-<div class="new-comment"></div>
-<div class="comments"></div>

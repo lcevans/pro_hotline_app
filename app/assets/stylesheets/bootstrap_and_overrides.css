@@ -15,3 +15,7 @@ body {
 .label-info {
 	background-color: #706B94;
 }
+
+.fa-check {
+    font-size: 3.5em;
+}

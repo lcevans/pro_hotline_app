@@ -3,8 +3,8 @@
 	<%= comment.author.username %>: <%= comment.escape("body") %>
 	<div class="edit-tools">
 	  <% if (ProHotlineApp.currentUser && comment.author.id == ProHotlineApp.currentUserId) { %>
-  	  <button class="edit-comment fa fa-edit"></button>
-  	  <button class="delete-comment fa fa-trash-o"></button>
+  	  <i class="edit-comment fa fa-edit"></i>
+  	  <i class="delete-comment fa fa-trash-o"></i>
 	  <% } %>
 	</div>
 </div>

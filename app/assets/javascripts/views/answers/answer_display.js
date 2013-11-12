@@ -15,7 +15,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     "click button.delete-answer": "deleteAnswer",
     "click button.edit-answer": "editAnswer",
     "click button.cancel": "cancel",
-    "click button.mark-best-answer": "markAsBest",
+    "click .mark-best-answer": "markAsBest",
     "submit": "updateAnswer"
   },
 
@@ -59,7 +59,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
       },
       success: function (model) {
         $("div.best").attr("class", "not-best");
-        that.$el.children("div.not-best").attr("class", "best");
+        that.$("div.not-best").attr("class", "best");
         //that.render(); // DANGER!!!
       }
     });
@@ -118,7 +118,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
     this.subviews.push(newCommentView);
 
-    var dom = this.$el.children("div.new-comment");
+    var dom = this.$("div.new-comment");
     newCommentView.setElement(dom).displayButton();
   },
 
@@ -128,7 +128,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
     this.subviews.push(commentView);
 
-    var dom = this.$el.children("div.comments");
+    var dom = this.$("div.comments");
     dom.append(commentView.render().$el);
   },
 

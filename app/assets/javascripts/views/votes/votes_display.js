@@ -9,8 +9,8 @@ ProHotlineApp.Views.VotesDisplay = Backbone.View.extend({
   inlineTemplate: JST['votes/inline_display'],
 
   events: {
-    "click button.upvote": "upvote",
-    "click button.downvote": "downvote",   
+    "click .upvote": "upvote",
+    "click .downvote": "downvote",   
   },
 
   render: function () {
