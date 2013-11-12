@@ -1,4 +1,6 @@
-1) Am I removing the views properly? Memory leak check!
+1) Restore comment votes
+
+***) deal with issues between this.$el.children and this.$
 
 4) Fix createdAt function. (This will involve figuring out how Javascript dates work)
 

@@ -1,10 +1,13 @@
 <div class="comment-body">
+	<span class="comment-votes"></span>
 	<%= comment.author.username %>: <%= comment.escape("body") %>
+	<div class="edit-tools">
+	  <% if (ProHotlineApp.currentUser && comment.author.id == ProHotlineApp.currentUserId) { %>
+  	  <button class="edit-comment fa fa-edit"></button>
+  	  <button class="delete-comment fa fa-trash-o"></button>
+	  <% } %>
+	</div>
 </div>
-<div class="votes"></div>
 
-<% if (ProHotlineApp.currentUser && comment.author.id == ProHotlineApp.currentUserId) { %>
-		  	<button class="edit-comment">Edit Comment</button>
-		  	<button class="delete-comment">Delete Comment</button>
-<% } %>
+
 

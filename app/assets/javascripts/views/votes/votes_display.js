@@ -1,10 +1,12 @@
 ProHotlineApp.Views.VotesDisplay = Backbone.View.extend({
 
   initialize: function (options) {
+    this.template = (options.inline ? this.inlineTemplate : this.defaultTemplate);
     this.modelType = options.modelType;
   },
 
-  template: JST['votes/display'],
+  defaultTemplate: JST['votes/display'],
+  inlineTemplate: JST['votes/inline_display'],
 
   events: {
     "click button.upvote": "upvote",

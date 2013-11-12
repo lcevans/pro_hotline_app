@@ -10,25 +10,6 @@
  *
  *= require_self
  *= require_tree .
+ *= require font-awesome
  */
 
-
-
-ul.menu {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-ul.menu a, ul.menu form, ul.menu span {
-	float: left;
-	display: block;
-	width: 120px;
-	text-align: center;
-	padding: 4px;
-	text-transform: uppercase;
-	font-weight: bold;
-	text-decoration: none;
-	color: #706B94;
-}

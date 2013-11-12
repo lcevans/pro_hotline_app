@@ -56,7 +56,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
     this.subviews.push(votesView);
 
-    var dom = this.$el.children("div.votes");
+    var dom = this.$("div.question-votes");
     votesView.setElement(dom).render();
   },
 
@@ -66,7 +66,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
     this.subviews.push(commentView);
 
-    var dom = this.$el.children("div.comments");
+    var dom = this.$("div.comments");
     dom.append(commentView.render().$el);
   },
 
@@ -76,7 +76,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
     this.subviews.push(newAnswerView);
 
-    var dom = this.$el.children("div.new-answer");
+    var dom = this.$("div.new-answer");
     newAnswerView.setElement(dom).displayButton();
   },
 
@@ -87,7 +87,7 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
     this.subviews.push(newCommentView);
 
-    var dom = this.$el.children("div.new-comment");
+    var dom = this.$("div.new-comment");
     newCommentView.setElement(dom).displayButton();
   },
 

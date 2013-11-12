@@ -1,6 +1,10 @@
-<h4>Votes: <%= candidate.voteCount() %></h4>
 
-<% if (ProHotlineApp.currentUser) { %>
-	<button class="upvote">Upvote</button>
-	<button class="downvote">Downvote</button>
-<% } %>
+<div class="vote-count">
+  <% if (ProHotlineApp.currentUser) { %>
+    <button class="upvote"><i class="fa fa-arrow-up fa-lg"></i></button>
+  <% } %>
+    <h4><%= candidate.voteCount() %></h4>
+  <% if (ProHotlineApp.currentUser) { %>
+    <button class="downvote"><i class="fa fa-arrow-down fa-lg"></i></button>
+  <% } %>
+<div>

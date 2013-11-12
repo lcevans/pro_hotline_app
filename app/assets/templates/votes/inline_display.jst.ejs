@@ -1,0 +1,12 @@
+
+<span class="vote-count">
+  <% if (ProHotlineApp.currentUser) { %>
+    <button class="upvote"><i class="fa fa-caret-up fa-lg"></i></button>
+  <% } %>
+  <span id="inline-vote-number">
+    <%= candidate.voteCount() %>
+  </span>
+  <% if (ProHotlineApp.currentUser) { %>
+    <button class="downvote"><i class="fa fa-caret-down fa-lg"></i></button>
+  <% } %>
+</span>

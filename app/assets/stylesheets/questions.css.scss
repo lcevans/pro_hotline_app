@@ -1,8 +1,39 @@
-div.question-body {
-	background: #DDDDDD;
+div.question {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+div.question-content {
+	max-width: 1000px;
+	margin: 0 auto;
 	border: 1px solid;
-	width: 50%;
-	height: 200px;
+	background: #FAFAFA;
+}
+
+div.question-title {
+}
+
+div.question-votes {
+	width: 13%;
+	display: inline-block;
+}
+
+div.the-rest {
+	width: 85%;
+	margin-right: 1%;
+	float: right;
+}
+
+div.question-body {
+	background: #EEEEEE;
+	min-height: 200px;
+}
+
+div.question-info {
+}
+
+div.question-author-info {
+	float: right;
 }
 
 .questions {

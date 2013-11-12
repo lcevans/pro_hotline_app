@@ -107,7 +107,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     });
     this.subviews.push(votesView);
 
-    var dom = this.$el.children("div.votes");
+    var dom = this.$("div.answer-votes");
     votesView.setElement(dom).render();
   },
 

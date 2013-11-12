@@ -1,4 +1,4 @@
--Javascript up the questions index
+-Navigation. Tags page which lists all related posts, following users.
 -Devise?
 -Add points?
 -Add bounties

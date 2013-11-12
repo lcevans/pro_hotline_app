@@ -1,25 +1,35 @@
 
-<h1>Title: <%= question.escape("title") %></h1>
-<h4>Authored by <%= question.author.username %></h4>
-<h4>Views: <%= question.viewCount %></h4>
-<div class="votes"></div>
+<div class="question-content clearfix">
+  <div class="question-title">
+    <h2><%= question.escape("title") %></h2>
+  </div>
+  <div class="question-votes"></div>
 
-<h2>Body</h2>
-<div class="question-body">
-	<%= question.escape("body") %>
+  <div class="the-rest">
+
+  	<div class = "question-body">
+  	  <%= question.escape("body") %>
+  	</div>
+  	<ul class="tags">
+  		<% question.tags.each(function (tag) { %>
+  		  <li class="tag label label-info"><%= tag.escape("name") %></li>
+  		<% }); %>
+    </ul>
+    <div class="question-info clearfix">
+      <div class="question-author-info">
+        Authored by <%= question.author.username %>
+      </div>
+    </div> 
+
+    <div class="comments"></div>
+    <div class="new-comment"></div>
+  </div>
+
 </div>
 
-<div class="tags">
-	<h4>Tags</h4>
-	<ul>
-		<% question.tags.each(function (tag) { %>
-		  <li><%= tag.escape("name") %></li>
-		<% }); %>
-  </ul>
-</div>
 
-<h4>Comments</h4>
-<div class="new-comment"></div>
-<div class="comments"></div>
+
+
+
 
 <div class="new-answer"></div>
