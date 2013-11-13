@@ -12,12 +12,25 @@
   	</div>
   	<ul class="tags">
   		<% question.tags.each(function (tag) { %>
-  		  <li class="tag label label-info"><%= tag.escape("name") %></li>
+  		  <li class="tag label label-info">
+          <a href="/tags/<%= tag.id %>">
+            <%= tag.escape("name") %>
+          </a>
+        </li>
   		<% }); %>
     </ul>
     <div class="question-info clearfix">
       <div class="question-author-info">
-        Authored by <%= question.author.username %>
+        Authored by 
+        <a href="/users/<%= question.author.id %>">
+          <%= question.author.username %>
+        </a>
+      </div>
+      <div class="edit-tools">
+        <% if (ProHotlineApp.currentUser && question.author.id == ProHotlineApp.currentUserId) { %>
+          <i class="edit-question fa fa-edit"></i>
+          <i class="delete-question fa fa-trash-o"></i>
+        <% } %>
       </div>
     </div> 
 

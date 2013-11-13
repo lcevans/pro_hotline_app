@@ -38,6 +38,12 @@ div.question-author-info {
 	float: right;
 }
 
+.question-info .edit-tools {
+	float: right;
+	margin-right: 7px;
+	cursor: pointer;
+}
+
 .questions {
 	margin: 20px 0px 0px 50px;
 	width: 100%;
@@ -53,6 +59,10 @@ div.question-author-info {
 
 .qquestion-mini:hover {
 	background: #C0C3CF;
+}
+
+.question-mini a {
+	text-decoration: none;
 }
 
 .question-mini .item {

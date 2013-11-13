@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :views
   has_many :question_votes
   has_many :answer_votes
+  has_many :tag_followings, :dependent => :destroy
+  has_many :tags, :through => :tag_followings, :source => :tag
 
   # Methods
 

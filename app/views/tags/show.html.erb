@@ -1,0 +1,8 @@
+<h1> Tag: <%= @tag.name %> </h1>
+
+<h2>Questions</h2>
+<ul>
+<% @tag.questions.try(:each) do |question| %>
+	<li><%= link_to question.title, question_url(question) %></li>
+<% end %>
+</ul>

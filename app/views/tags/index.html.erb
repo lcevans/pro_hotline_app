@@ -1,0 +1,16 @@
+<h1>Tags</h1>
+
+<ul>
+<% @tags.try(:each) do |tag| %>
+  <li class="tag-index-list-item">
+  	  <div class="label label-info" >
+  	    <a href="/tags/<%= tag.id %>">
+  	  	  <%= link_to tag.name, tag_url(tag) %>
+  	    </a>
+      </div>
+      <div>
+  	    <%= tag.questions.count %> Questions 
+  	  </div>
+  </li>
+<% end %>
+</ul>

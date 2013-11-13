@@ -16,3 +16,20 @@
 .gravatar {
 	border-radius: 5px;
 }
+
+#current-user {
+	float: right;
+}
+
+#sign-out-button {
+	float: right;
+}
+
+#sign-in-button {
+	float: right;
+}
+
+#sign-up-button {
+	float: right;
+}
+

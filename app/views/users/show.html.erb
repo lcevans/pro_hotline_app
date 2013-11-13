@@ -1,29 +1,67 @@
-<div class="user-info">
-  <h1><%= @user.username %></h1>
-  <%= gravatar_for(@user) %>
-  <p>Joined on <%= @user.created_at %></p>
+<div class="user-top-half clearfix">
+  <div class="user-info">
+    <%= gravatar_for @user, :size => 90 %>
+    <h1 class="user-name"><%= @user.username %></h1>
+    <p>Joined on <%= @user.created_at %></p>
+  </div>
+
+  <div class="profile"></div>
+
 </div>
 
-<div class="profile">
-<h2>Profile</h2>
-<div class="profile-body">
-	<%= @user.profile %>
-</div>
+
+<div class="user-bottom-half clearfix">
+
+	<div class="user-questions">
+    <p>Authored <%= @user.authored_questions.count %> Questions </p>
+    <ul>
+    <% @user.authored_questions.try(:each) do |question| %>
+    	<li>
+    		<%= link_to question.title, question_url(question) %>
+    	</li>
+    <% end %>
+    </ul>
+	</div>
+
+	<div class="user-answers">
+    <p>Authored <%= @user.authored_answers.count %> Answers </p>
+    <ul>
+    <% @user.authored_answers.includes(:question).try(:each) do |answer| %>
+    	<li>
+    		<%= link_to answer.question.title, question_url(answer.question, :anchor => answer.id) %>
+    	</li>
+    <% end %>
+    </ul>
+	</div>
+
+	<div class="user-tags">
+    <p>Followed Tags </p>
+    <ul>
+    <% @user.tags.try(:each) do |tag| %>
+    	<li>
+    		<%= tag.name %>
+    	</li>
+    <% end %>
+    </ul>
+	</div>
+
 </div>
 
-<p>Authored <%= @user.authored_questions.count %> Questions </p>
-<ul>
-<% @user.authored_questions.try(:each) do |question| %>
-	<li>
-		<%= link_to question.title, question_url(question) %>
-	</li>
-<% end %>
-</ul>
-<p>Authored <%= @user.authored_answers.count %> Answers </p>
-<ul>
-<% @user.authored_answers.includes(:question).try(:each) do |answer| %>
-	<li>
-		<%= link_to answer.question.title, question_url(answer.question, :anchor => answer.id) %>
-	</li>
-<% end %>
-</ul>
+<script type="text/javascript">
+  $(document).ready(function () {
+		// Initialize global variables
+		ProHotlineApp.currentUserId = $("#current-user").attr("data-id")
+		ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
+
+		ProHotlineApp.user = new ProHotlineApp.Models.User();
+		ProHotlineApp.user.set('id', <%= @user.id %>);
+		ProHotlineApp.user.fetch({
+			success: function () {
+        var profileView = new ProHotlineApp.Views.Profile({
+          model: ProHotlineApp.user
+        });
+        $("div.profile").html(profileView.render().$el);
+			}
+		});	
+	});
+</script>

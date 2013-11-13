@@ -17,11 +17,29 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
     if params.include?(:id)
       @user = User.find(params[:id])
     else
       redirect_to user_url(current_user)
+    end
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :json => @user }
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      render :json => @user
+    else
+      render :json => @comment.errors.full_messages, :status => 422
     end
   end
 end

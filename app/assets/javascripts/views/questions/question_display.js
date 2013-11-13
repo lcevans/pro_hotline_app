@@ -8,6 +8,10 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     });
   },
 
+  events: {
+    "click .delete-question": "delete"
+  },
+
   template: JST['questions/display'],
 
   render: function () {
@@ -44,10 +48,6 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
   	return this;
   },
 
-  edit: function () {
-    var dom = this.$el.children("div.question-body");
-    dom.html("");
-  },
 
   renderVotes: function () {
     var votesView = new ProHotlineApp.Views.VotesDisplay({
@@ -89,6 +89,21 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
 
     var dom = this.$("div.new-comment");
     newCommentView.setElement(dom).displayButton();
+  },
+
+  // Edit/Delete
+
+  delete: function () {
+    if (confirm("Are you sure you want to delete this question?")) {
+    this.model.destroy({
+      error: function (model, errors) {
+        alert("error deleting question");
+      },
+      success: function () {
+        window.location = '/questions';
+      }
+    })
+    }
   },
 
   // Dealing with garbage collection

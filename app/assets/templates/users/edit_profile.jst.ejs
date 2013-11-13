@@ -1,0 +1,11 @@
+  <div class="errors"></div>
+
+  <form id="edit-profile-form">
+	  <p>
+	  <textarea id="user_profile"
+	            name="user[profile]"><%= user.escape("profile")%></textarea>
+	  </p>
+
+	  <input type="submit" value="Update Profile">
+  </form>
+  <button class="cancel">Cancel</button>

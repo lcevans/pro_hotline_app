@@ -1,9 +1,11 @@
--Navigation. Tags page which lists all related posts, following users.
--Devise?
--Add points?
--Add bounties
+-edit question 
+
 -Sorting algorithm
 -Tags! Implement a good tag system.
 -Limit on Tags for index page? In any case?
 -Pagination?
 -click on a user to see their authored questions? Info page?
+-confirm delete (with nice CSS) for all delete actions
+
+
+-Devise?

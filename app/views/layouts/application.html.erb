@@ -11,17 +11,24 @@
     <div class="navbar-inner">
       <a class="brand" href="#">Pro Hotline</a>
       <ul class="nav">
-        <li id="home-button"><%= link_to "Questions", questions_url %></li>
+        <li id="questions-button"><%= link_to "Questions", questions_url %></li>
+        <li id="users-button"><%= link_to "Users", users_url %></li>
+        <li id="tags-button"><%= link_to "Tags", tags_url %></li>
+      </ul>
+      <ul class="nav pull-right">
         <% if !!current_user %>
-        <li id="current-user" data-id="<%= current_user_id %>">
-          <%= link_to current_user.username, user_url(current_user) %>
-        </li>
-        <li id="logout-button">
-          <%= link_to "Sign Out", session_url, :method => :delete %>
-        </li>
+          <li id="sign-out-button">
+            <%= link_to "Sign Out", session_url, :method => :delete %>
+          </li>
+          <li id="current-user-gravatar">
+              <%= gravatar_for current_user, :size => 40 %>
+          </li>
+          <li id="current-user" data-id="<%= current_user_id %>">
+              <%= link_to current_user.username, user_url(current_user) %>
+          </li>          
         <% else %>
-        <li id="sign-in-button"><%= link_to "Sign In", new_session_url %></li>
-        <li id="sign-up-button"><%= link_to "Sign Up", new_user_url %></li>
+          <li id="sign-in-button"><%= link_to "Sign In", new_session_url %></li>
+          <li id="sign-up-button"><%= link_to "Sign Up", new_user_url %></li>
         <% end %>
       </ul>
     </div>

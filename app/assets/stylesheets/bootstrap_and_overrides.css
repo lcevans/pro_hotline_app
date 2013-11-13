@@ -19,3 +19,7 @@ body {
 .fa-check {
     font-size: 3.5em;
 }
+
+a {
+	text-decoration: none !important;
+}

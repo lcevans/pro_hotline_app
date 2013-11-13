@@ -1,7 +1,7 @@
 <!-- <image src="images/thumbs_up.jpg"></image> -->
 
 
-<h1 id="questions-index-title">Questions</h1>
+<h1 id="questions-index-title">All Questions</h1>
 
 <% if (!!current_user) %>
 	<%= link_to "Ask a Question", new_user_question_url(current_user.id), 
@@ -11,6 +11,7 @@
 <ul class="questions"></ul>
 
 <script type="text/javascript">
+
 	$(document).ready(function () {
 		// Initialize global variables
 		ProHotlineApp.currentUserId = $("#current-user").attr("data-id")

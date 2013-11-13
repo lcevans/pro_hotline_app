@@ -34,7 +34,11 @@
 	<span>Created: <%= question.createdAt() %></span>
 	<ul class="tags">
 		<% question.tags.each(function (tag) { %>
-		  <li class="tag label label-info"><%= tag.escape("name") %></li>
+		  <li class="tag label label-info">
+		    <a href="/tags/<%= tag.id %>">
+		      <%= tag.escape("name") %>
+		    </a>
+		  </li>
 		<% }); %>
   </ul>
   <div>
