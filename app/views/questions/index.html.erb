@@ -11,7 +11,10 @@
 <ul class="questions"></ul>
 
 <script type="text/javascript">
-
+  $.ajaxSetup({
+  	cache: false
+  });
+  
 	$(document).ready(function () {
 		// Initialize global variables
 		ProHotlineApp.currentUserId = $("#current-user").attr("data-id")

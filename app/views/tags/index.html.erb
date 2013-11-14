@@ -3,6 +3,10 @@
 <ul id="tag-index-list"></ul>
 
 <script type="text/javascript">
+  $.ajaxSetup({
+    cache: false
+  });
+  
   $(document).ready(function () {
     // Initialize global variables
     ProHotlineApp.currentUserId = parseInt($("#current-user").attr("data-id"));
