@@ -17,3 +17,26 @@
 	color: inherit;
 	text-decoration: none;
 }
+
+#tag-follow-div {
+	float:left;
+	margin-left: 15px;
+	margin-top: 7px;
+}
+
+i.follow {
+	font-size: 2em;
+}
+
+i.follow:hover {
+	cursor: pointer;
+}
+
+i.unfollow {
+	font-size: 2em;
+	color: yellow;
+}
+
+i.unfollow:hover {
+	cursor: pointer;
+}

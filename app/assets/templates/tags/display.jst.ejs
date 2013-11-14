@@ -1,0 +1,18 @@
+<div id="tag-follow-div">
+  <% if (ProHotlineApp.currentUser) { %>
+    <% if (followed) { %>
+      <i class="unfollow fa fa-star"></i>
+    <% } else { %>
+      <i class="follow fa fa-star"></i>
+    <% } %>
+  <% } %>
+</div>
+<div class="tag label label-info" >
+  <a href="/tags/<%= tag.id %>">
+    <%= tag.escape("name") %>
+  </a>
+</div>
+<div>
+  <%= tag.questions.length %> Questions 
+</div>
+

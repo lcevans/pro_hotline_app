@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def show
     if params.include?(:id)
-      @user = User.includes([{:authored_questions => :votes}, :authored_answers]).find(params[:id])
+      @user = User.includes([{:authored_questions => :votes}, {:authored_answers => :votes}, :tags]).find(params[:id])
     else
       redirect_to user_url(current_user)
     end
@@ -41,5 +41,31 @@ class UsersController < ApplicationController
     else
       render :json => @comment.errors.full_messages, :status => 422
     end
+  end
+
+  # Additional Controller Methods
+
+  def add_tag
+    @user = User.find(params[:user_id])
+    tag = Tag.find(params[:tag_id])
+    @user.tags << tag unless @user.tags.include?(tag)
+
+    if @user.save
+      render :json => @user
+    else
+      render :json => @comment.errors.full_messages, :status => 422
+    end    
+  end
+
+  def remove_tag
+    @user = User.find(params[:user_id])
+    tag = Tag.find(params[:tag_id])
+    @user.tags -= [tag]
+
+    if @user.save
+      render :json => @user
+    else
+      render :json => @comment.errors.full_messages, :status => 422
+    end    
   end
 end

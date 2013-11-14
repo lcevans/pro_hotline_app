@@ -1,16 +1,28 @@
 <h1>Tags</h1>
 
-<ul>
-<% @tags.try(:each) do |tag| %>
-  <li class="tag-index-list-item">
-  	  <div class="tag label label-info" >
-  	    <a href="/tags/<%= tag.id %>">
-  	  	  <%= link_to tag.name, tag_url(tag) %>
-  	    </a>
-      </div>
-      <div>
-  	    <%= tag.questions.count %> Questions 
-  	  </div>
-  </li>
-<% end %>
-</ul>
+<ul id="tag-index-list"></ul>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Initialize global variables
+    ProHotlineApp.currentUserId = parseInt($("#current-user").attr("data-id"));
+    ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
+
+    ProHotlineApp.tags = new ProHotlineApp.Collections.Tags();
+    ProHotlineApp.tags.fetch({
+      error: function () {
+        alert("error");
+      },
+      success: function () {
+        ProHotlineApp.tags.each(function (tag) {
+          var followed = (tag.userIds.indexOf(ProHotlineApp.currentUserId) == -1 ? false : true);
+          var tagView = new ProHotlineApp.Views.TagDisplay({
+            model: tag,
+            followed: followed,
+          });
+          $("#tag-index-list").append(tagView.render().$el);
+        });
+      }
+    }); 
+  });
+</script>

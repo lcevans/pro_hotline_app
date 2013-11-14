@@ -1,6 +1,11 @@
 object @tag
 
-attributes :name
+attributes :id, :name
+
+node :userIds do |t| 
+  t.user_ids
+end
+
 
 child :questions => :questions do 
 

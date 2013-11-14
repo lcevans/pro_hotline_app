@@ -14,6 +14,9 @@
 		ProHotlineApp.tag = new ProHotlineApp.Models.Tag();
 		ProHotlineApp.tag.set('id', <%= @tag.id %>);
 		ProHotlineApp.tag.fetch({
+			error: function () {
+				alert("error");
+			},
 			success: function () {
 				ProHotlineApp.tag.questions.each(function (question) {
 					var questionView = new ProHotlineApp.Views.QuestionMiniDisplay({

@@ -34,24 +34,91 @@
   margin: 15px;
 }
 
-.user-questions {
-	float: left;
-	width: 30%;
-	height: 100%;
+/****** THE IMAGE *********/
+
+#activity-label {
+	margin-left: 30%;
+	margin-top: 50px;
 }
 
-.user-questions li, .user-questions li {
+#box1 {
+ height: 50px;
+ width: 35%;
+ display: inline-block;
+ float:left;
+ border-right: 2px dashed;
+}
+#box2 {
+ height: 50px;
+ width: 64%;
+ display: inline-block;
+ float:left;
+}
+
+#box3 {
+ height: 50px;
+ width: 10%;
+ display: inline-block;
+ float:left;
+}
+
+#box4 {
+ height: 50px;
+ width: 24.8%;
+ display: inline-block;
+ float:left;
+ border: 2px dashed;
+ border-bottom: none;
+}
+
+#box5 {
+ height: 50px;
+ width: 24%;
+ display: inline-block;
+ float:left;
+ border: 2px dashed;
+ border-bottom: none;
+ border-left: none;
+}
+
+#box6 {
+ height: 50px;
+ width: 38%;
+ display: inline-block;
+ float:left;
+}
+
+
+
+
+/***************************/
+
+
+
+
+.user-questions {
+	float: left;
+	width: 25%;
+	height: 100%;
+	padding-left: 5%;
+}
+
+.user-questions li, .user-answers li {
   list-style: none;	
+}
+
+.user-questions-votes, .user-answers-votes {
+	color: #000000;
 }
 
 .user-answers {
 	float: left;
-	width: 30%;
+	width: 25%;
 	height: 100%;
 }
 .user-tags {
 	float: left;
-	width: 30%;
+	width: 25%;
 	height: 100%;
 }
 

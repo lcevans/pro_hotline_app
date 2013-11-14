@@ -84,6 +84,14 @@ div.question-author-info {
 	width: 95%;
 }
 
+#edit-question-form .tag:hover {
+	text-decoration: line-through;
+	cursor: pointer;
+}
+
+#edit-question-form #question_title {
+	width: 75%;
+}
 
 /* Questions Index Page */
 
