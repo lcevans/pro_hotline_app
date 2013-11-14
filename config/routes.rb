@@ -2,6 +2,8 @@ ProHotlineApp::Application.routes.draw do
 
   root :to => "questions#index"
 
+  get 'about', to: 'about#show', as: :about
+
   resource :session, :only => [:create, :destroy, :new]
   
   resources :users, :only => [:index, :create, :new, :show, :update] do

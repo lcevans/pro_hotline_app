@@ -1,26 +1,20 @@
-<h1>Sign In</h1>
-
-<%= render "users/demo_user_hidden_form" %>
-
 <form action="<%= session_url %>" method="post">
   <input
      name="authenticity_token"
      type="hidden"
      value="<%= form_authenticity_token %>">
 
-  <label for="user_username">Username</label>
   <input
      id="user_username"
      name="user[username]"
-     type="text">
-  <br>
+     value="Demo User"
+     type="hidden">
 
-  <label for="user_password">Password</label>
   <input
      id="user_password"
      name="user[password]"
-     type="password">
-  <br>
+     value="password"
+     type="hidden">
 
-  <input type="submit" value="Log in">
+  (or <input type="submit" value="Test with the Demo Account">)
 </form>

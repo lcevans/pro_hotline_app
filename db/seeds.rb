@@ -12,4 +12,5 @@ Tag.create(name: "super mario bros")
 chris = User.create!(username: "Chris", password: "password", email: "lawrence.c.evans@gmail.com")
 dan = User.create!(username: "Dan", password: "password", email: "djquan@gmail.com")
 steve = User.create!(username: "Steve", password: "password", email: "stevenjli@gmail.com")
+demo_user = User.create!(username: "Demo User", password: "password", email: "", backup_image: "MegaMan.png")
 

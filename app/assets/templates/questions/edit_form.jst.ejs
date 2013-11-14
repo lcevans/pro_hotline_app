@@ -28,10 +28,11 @@
 
     <div class="question-info clearfix">
       <div class="question-author-info">
-        Authored by 
+        Asked by 
         <a href="/users/<%= question.author.id %>">
           <%= question.author.username %>
         </a>
+        <%= question.createdAgo() %>
       </div>
 
     </div> 

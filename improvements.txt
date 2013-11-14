@@ -7,4 +7,4 @@
 -confirm delete (with nice CSS) for all delete actions
 -Improve Errors (not just [Object: Error] )
 
--Headset Henry
+-Headset Henry/Harry
