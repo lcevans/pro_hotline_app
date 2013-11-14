@@ -9,38 +9,45 @@
 
 </div>
 
+<h2>User Activity</h2>
 
 <div class="user-bottom-half clearfix">
 
-	<div class="user-questions">
+	<div class="user-questions lead">
     <p>Authored <%= @user.authored_questions.count %> Questions </p>
     <ul>
     <% @user.authored_questions.try(:each) do |question| %>
     	<li>
+            <span class="user-questions-votes"><%= question.vote_count %></span>
     		<%= link_to question.title, question_url(question) %>
     	</li>
     <% end %>
     </ul>
 	</div>
 
-	<div class="user-answers">
+	<div class="user-answers lead">
     <p>Authored <%= @user.authored_answers.count %> Answers </p>
     <ul>
     <% @user.authored_answers.includes(:question).try(:each) do |answer| %>
     	<li>
+            <span class="user-answers-votes"><%= answer.vote_count %></span>            
     		<%= link_to answer.question.title, question_url(answer.question, :anchor => answer.id) %>
     	</li>
     <% end %>
     </ul>
 	</div>
 
-	<div class="user-tags">
+	<div class="user-tags lead">
     <p>Followed Tags </p>
     <ul>
     <% @user.tags.try(:each) do |tag| %>
-    	<li>
-    		<%= tag.name %>
-    	</li>
+      <li class="tag label label-info">
+        <div>
+          <a href="/tags/<%= tag.id %>">
+            <%= link_to tag.name, tag_url(tag) %>
+          </a>
+        </div>
+      </li>
     <% end %>
     </ul>
 	</div>

@@ -19,14 +19,13 @@
 
   <div class="answer-the-rest">
 
-    <div class="edit-answer-div">
+    
 
-      <h4><%= "Answer by " + answer.author.username %></h4>
+    <div class="edit-answer-div">
       <div class="errors"></div>
 
       <form id="edit-answer-form">
       <p>
-        <label for="answer_body">Body</label>
         <textarea id="answer_body"
         name="answer[body]"><%= answer.escape("body")%></textarea>
       </p>

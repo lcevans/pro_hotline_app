@@ -23,3 +23,4 @@
 //= require_tree ./routers
 //= require_tree .
 //= require jquery.serializeJSON.min
+//= require jquery.timeago

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :require_current_user!, :only => [:show]
+	#before_filter :require_current_user!, :only => [:show]
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def create
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def show
     if params.include?(:id)
-      @user = User.find(params[:id])
+      @user = User.includes([{:authored_questions => :votes}, :authored_answers]).find(params[:id])
     else
       redirect_to user_url(current_user)
     end

@@ -7,7 +7,13 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
+<!-- Dummy bar to go underneath the fixed bar -->
   <div class="navbar">
+    <div class="navbar-inner">
+    </div>
+  </div>
+<!-- The real bar -->
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <a class="brand" href="#">Pro Hotline</a>
       <ul class="nav">

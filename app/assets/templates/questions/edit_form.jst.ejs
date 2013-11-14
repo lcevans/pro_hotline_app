@@ -1,0 +1,41 @@
+<div class="question-content clearfix">
+      <form id="edit-question-form">
+  <div class="question-title">
+    <input type="text"
+           name="question[title]"
+           value="<%= question.escape("title") %>">
+  </div>
+  <div class="question-votes"></div>
+
+  <div class="question-the-rest">
+
+
+      <p>
+        <textarea id="question_body"
+        name="question[body]"><%= question.escape("body")%></textarea>
+      </p>
+
+      <label for="question_tag_input">Tag(s)</label>
+      <input type="text"
+      id="question_tag_input">
+      </p>
+      <ul id="edit-tag-list"></ul>
+
+      <input type="submit" value="Update Question">
+      </form>
+      <button class="cancel">Cancel</button>
+
+    <div class="question-info clearfix">
+      <div class="question-author-info">
+        Authored by 
+        <a href="/users/<%= question.author.id %>">
+          <%= question.author.username %>
+        </a>
+      </div>
+
+    </div> 
+
+    <ul class="comments"></ul>
+  </div>
+</div>
+

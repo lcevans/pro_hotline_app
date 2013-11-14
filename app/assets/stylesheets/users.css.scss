@@ -1,7 +1,8 @@
 .user-info {
-	border: 1px solid;
 	width: 30%;
 	float: left;
+	margin-left: 50px;
+	margin-top: 10px;
 }
 
 .user-info .gravatar {
@@ -12,34 +13,48 @@
 	float: right;
 	width: 50%;
 	border: 1px solid;
+	margin: 10px;
+	border-radius: 5px;
+	background: #FAFAFA;
 }
 
 .profile-body {
-	width: 100%;
+	width: 95%;
   height: 150px;
-  border: 1px solid;
-  margin: 5px;
+  border-radius: 5px;
+	background: #EEEEEE;
+  margin: 15px;
+}
+
+#edit-profile-form #user_profile {
+	width: 95%;
+  height: 150px;
+  border-radius: 5px;
+	background: #FFFFFF;
+  margin: 15px;
 }
 
 .user-questions {
-	border: 1px solid;
 	float: left;
 	width: 30%;
 	height: 100%;
 }
+
+.user-questions li, .user-questions li {
+  list-style: none;	
+}
+
 .user-answers {
-	border: 1px solid;
 	float: left;
 	width: 30%;
 	height: 100%;
 }
 .user-tags {
-	border: 1px solid;
 	float: left;
 	width: 30%;
 	height: 100%;
 }
 
 .user-bottom-half {
-	border: 1px solid;
+	margin-top: 30px;
 }

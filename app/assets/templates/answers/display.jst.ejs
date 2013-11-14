@@ -25,7 +25,10 @@
     <div class="answer-info clearfix">
 
       <div class="answer-author-info">
-        Authored by <%= answer.author.username %>
+        Authored by 
+        <a href="/users/<%= answer.author.id %>">
+          <%= answer.author.username %>
+        </a>
       </div>
 
       <div class="edit-tools">

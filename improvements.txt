@@ -1,11 +1,10 @@
--edit question 
+-About Page?
 
 -Sorting algorithm
--Tags! Implement a good tag system.
--Limit on Tags for index page? In any case?
--Pagination?
--click on a user to see their authored questions? Info page?
+
+-Add created ago in more places?
+
 -confirm delete (with nice CSS) for all delete actions
+-Improve Errors (not just [Object: Error] )
 
-
--Devise?
+-Headset Henry

@@ -7,7 +7,7 @@ ProHotlineApp.Views.CommentNew = Backbone.View.extend({
   template: JST['comments/form'],
 
   events: {
-  	"submit": "submit",
+  	"submit #new-comment-form": "createComment",
     "click button.new-answer": "displayForm",
     "click button.cancel": "displayButton"
   },
@@ -28,7 +28,7 @@ ProHotlineApp.Views.CommentNew = Backbone.View.extend({
     return this
   },
 
-  submit: function (event) {
+  createComment: function (event) {
     var that = this;
   	event.preventDefault();
   	var payload = $(event.target).serializeJSON();

@@ -3,7 +3,7 @@
 <ul>
 <% @tags.try(:each) do |tag| %>
   <li class="tag-index-list-item">
-  	  <div class="label label-info" >
+  	  <div class="tag label label-info" >
   	    <a href="/tags/<%= tag.id %>">
   	  	  <%= link_to tag.name, tag_url(tag) %>
   	    </a>

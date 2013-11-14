@@ -9,12 +9,20 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
   },
 
   events: {
-    "click .delete-question": "delete"
+    "click .delete-question": "deleteQuestion",
+    "click .edit-question": "editQuestion",
+    "keydown #question_tag_input": "handleKey",
+    "blur #question_tag_input": "addTag",
+    "click #edit-tag-list .tag": "deleteTag",     
+    "click button.cancel": "cancel",
+    "submit #edit-question-form": "updateQuestion"
   },
 
   template: JST['questions/display'],
+  editTemplate: JST['questions/edit_form'],
 
   render: function () {
+
   	var that = this;
 
   	// Wipe the DOM clean
@@ -91,9 +99,9 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
     newCommentView.setElement(dom).displayButton();
   },
 
-  // Edit/Delete
+  // Edit/Delete//////////////////////////////////////////
 
-  delete: function () {
+  deleteQuestion: function () {
     if (confirm("Are you sure you want to delete this question?")) {
     this.model.destroy({
       error: function (model, errors) {
@@ -104,6 +112,77 @@ ProHotlineApp.Views.QuestionDisplay = Backbone.View.extend({
       }
     })
     }
+  },
+
+  editQuestion: function () {
+    var that = this;
+
+    // Clear the DOM
+    this.$el.html("");
+    this.removeSubviews();
+
+    // Add the Edit Form
+    renderedContent = this.editTemplate({
+      question: this.model,
+    });
+    this.$el.append(renderedContent);
+
+    // Render Tags
+    this.renderTags();
+
+    // Add the Votes view
+    this.renderVotes();
+  },
+
+  updateQuestion: function (event) {
+    var that = this;
+    event.preventDefault();
+    var payload = $(event.target).serializeJSON();
+
+    this.model.save(payload.question, {
+      wait: true,
+      error: function (model, error) {
+        $("div.errors").html("ERROR: ");
+        $("div.errors").append(error.responseText);
+      },
+      success: function (model) {
+        that.render(); //WARNING!!
+      }
+    })
+  },
+
+  handleKey: function (key) {
+    if (key.which == 13 || key.which == 32) {
+      this.addTag();
+    }    
+  },
+
+  addTag: function () {
+    var tagName = this.$("#question_tag_input").val()
+    var formattedTagName = $.trim(tagName).replace("_"," ").toLowerCase();
+    if (formattedTagName != "") {
+      this.model.tags.add({name: formattedTagName});
+      this.renderTags();
+    }
+    this.$("#question_tag_input").val("");
+  },
+
+  deleteTag: function (event) {
+    var tagName = $(event.target).html();
+    var modelToRemove = this.model.tags.findWhere({name: tagName});
+    this.model.tags.remove(modelToRemove);
+    this.renderTags();
+  },
+
+  renderTags: function () {
+    this.$("#edit-tag-list").html("");
+    this.model.tags.each(function (tag) {
+      this.$("#edit-tag-list").append('<li class="tag label label-info">' + tag.get("name") + '</li>');
+    });
+  },
+
+  cancel: function () {
+    this.render();
   },
 
   // Dealing with garbage collection

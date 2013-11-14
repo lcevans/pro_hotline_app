@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112215658) do
+ActiveRecord::Schema.define(:version => 20131113013729) do
 
   create_table "answers", :force => true do |t|
     t.integer  "author_id",   :null => false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20131112215658) do
     t.datetime "updated_at",                      :null => false
     t.string   "email",           :default => ""
     t.text     "profile",         :default => ""
+    t.string   "backup_image",    :default => ""
   end
 
   add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true

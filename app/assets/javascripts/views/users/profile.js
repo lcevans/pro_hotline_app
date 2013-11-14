@@ -5,7 +5,7 @@ ProHotlineApp.Views.Profile = Backbone.View.extend({
 
   events: {
   	"click #edit-profile": "edit",
-  	"submit": "updateProfile",
+  	"submit #edit-profile-form": "updateProfile",
   	"click .cancel": "render"
   },
 

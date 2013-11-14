@@ -31,16 +31,23 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		# Only Rails for now
 		@question = Question.new(params[:question])
 		@question.author_id = current_user_id
-		@question.tag_ids = params[:tag_ids]
+
+		tags = params[:tags]
+		tags.try(:each) do |tag|
+			existing_tag = Tag.find_by_name(tag[:name])
+			if existing_tag
+				@question.tags << existing_tag
+			else
+				@question.tags.new(:name => tag[:name])
+			end
+		end
 
 		if @question.save
-			redirect_to question_url(@question)
+			render :show
 		else
-			flash[:errors] = @question.errors.full_messages
-			render :new
+			render :json => @question.errors.full_messages, :status => 422
 		end
 	end
 
@@ -51,12 +58,21 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question = Question.find(params[:id])
-		# @question.tag_ids = params[:question][:tag_ids]
+
+		@question.tags = [];
+		tags = params[:tags]
+		tags.try(:each) do |tag|
+			existing_tag = Tag.find_by_name(tag[:name])
+			if existing_tag
+				@question.tags << existing_tag
+			else
+				@question.tags.new(:name => tag[:name])
+			end
+		end
 
 		if @question.update_attributes(params[:question])
 			render :show
 		else
-			flash[:errors] = @question.errors.full_messages
 			render :json => @question.errors.full_messages, :status => 422
 		end
 	end

@@ -18,4 +18,10 @@ class Question < ActiveRecord::Base
   has_many :votes, :as => :votable, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
+  # Methods
+
+  def vote_count
+    self.votes.count - 2 * self.votes.where(:vote_type => "DOWNVOTE").count
+  end
+
 end

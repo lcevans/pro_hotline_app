@@ -9,7 +9,7 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
     "click .delete-comment": "deleteComment",
     "click .edit-comment": "editComment",
     "click button.cancel": "cancel",
-    "submit": "updateComment"
+    "submit #edit-comment-form": "updateComment"
   },
 
   render: function () {

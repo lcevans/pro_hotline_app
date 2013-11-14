@@ -16,7 +16,7 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     "click .edit-answer": "editAnswer",
     "click button.cancel": "cancel",
     "click .mark-best-answer": "markAsBest",
-    "submit": "updateAnswer"
+    "submit #edit-answer-form": "updateAnswer"
   },
 
   render: function () {

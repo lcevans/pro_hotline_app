@@ -3,7 +3,7 @@ ProHotlineApp.Views.AnswerNew = Backbone.View.extend({
   template: JST['answers/form'],
 
   events: {
-  	"submit": "submit",
+  	"submit #new-answer-form": "createAnswer",
     "click button.new-answer": "displayForm",
     "click button.cancel": "displayButton"
   },
@@ -24,7 +24,7 @@ ProHotlineApp.Views.AnswerNew = Backbone.View.extend({
     return this
   },
 
-  submit: function (event) {
+  createAnswer: function (event) {
     var that = this;
   	event.preventDefault();
   	var payload = $(event.target).serializeJSON();

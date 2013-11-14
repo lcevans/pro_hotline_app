@@ -31,7 +31,7 @@
 	<a href="/users/<%= question.author.id %>">
 	  <%= question.author.username %>
 	</a>
-	<span>Created: <%= question.createdAt() %></span>
+	<span>Created: <%= question.createdAgo() %></span>
 	<ul class="tags">
 		<% question.tags.each(function (tag) { %>
 		  <li class="tag label label-info">

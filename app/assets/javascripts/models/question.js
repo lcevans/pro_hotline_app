@@ -13,25 +13,9 @@ ProHotlineApp.Models.Question = Backbone.Model.extend({
     return upvotes - downvotes;
 	},
 
-	createdAt: function () {
-		var timeCreated = new Date(Date.parse(this.get("created_at")));
-		var currentTime = new Date();
-		var secondsPassed = currentTime - timeCreated;
-		var minutesPassed = secondsPassed % 60;
-		var hoursPassed = minutesPassed % 60;
-		var daysPassed = hoursPassed % 24;
-		var weeksPassed = daysPassed % 7;
-		var monthsPassed = daysPassed % 31;
-		var yearsPassed = daysPassed % 365;
-
-		if (secondsPassed < 60) {return "just now";}
-		if (minutesPassed < 60) {return minutesPassed + " minutes ago";}
-		if (hoursPassed < 24) {return hoursPassed + " hours ago";}
-		if (daysPassed < 7) {return daysPassed + " days ago";}				
-		if (weeksPassed < 5) {return weeksPassed + " weeks ago";}		
-		if (monthsPassed < 12) {return monthsPassed + " months ago";}		
-
-		return yearsPassed + "years ago";		
+	createdAgo: function () {
+		var timeCreated = new Date(this.get("created_at"));
+		return $.timeago(timeCreated);	
 	},
 
 	constructor: function() {
@@ -66,6 +50,6 @@ ProHotlineApp.Models.Question = Backbone.Model.extend({
   	// Remove attributes that we should not modify on the server
   	delete attributes.created_at;
 
-    return { question: attributes }
+    return { question: attributes, tags: this.tags }
   },
 });

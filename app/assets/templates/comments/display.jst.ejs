@@ -1,6 +1,11 @@
 
 	<span class="comment-votes"></span>
-	<%= comment.author.username %>: <%= comment.escape("body") %>
+
+        
+	<a href="/users/<%= comment.author.id %>">
+	  <%= comment.author.username %>
+	</a>: <%= comment.escape("body") %>
+
 	<div class="edit-tools">
 	  <% if (ProHotlineApp.currentUser && comment.author.id == ProHotlineApp.currentUserId) { %>
   	  <i class="edit-comment fa fa-edit"></i>

@@ -1,8 +1,27 @@
 <h1> Tag: <%= @tag.name %> </h1>
 
 <h2>Questions</h2>
-<ul>
-<% @tag.questions.try(:each) do |question| %>
-	<li><%= link_to question.title, question_url(question) %></li>
-<% end %>
+<ul id="tag-questions-list">
+
 </ul>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+		// Initialize global variables
+		ProHotlineApp.currentUserId = $("#current-user").attr("data-id")
+		ProHotlineApp.currentUser = (ProHotlineApp.currentUserId ? true : false)
+
+		ProHotlineApp.tag = new ProHotlineApp.Models.Tag();
+		ProHotlineApp.tag.set('id', <%= @tag.id %>);
+		ProHotlineApp.tag.fetch({
+			success: function () {
+				ProHotlineApp.tag.questions.each(function (question) {
+					var questionView = new ProHotlineApp.Views.QuestionMiniDisplay({
+						model: question,
+					});
+					$("#tag-questions-list").append(questionView.render().$el);
+				});
+			}
+		});	
+	});
+</script>

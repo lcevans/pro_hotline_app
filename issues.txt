@@ -1,8 +1,4 @@
-1) Restore comment votes
-
 ***) deal with issues between this.$el.children and this.$
-
-4) Fix createdAt function. (This will involve figuring out how Javascript dates work)
 
 5) I think I am pushing my secret token to github?
 
@@ -13,3 +9,5 @@
 8) Doesn't update the number of answers when creating a new one
 
 9) Deal with what happens after you delete a User. What happens to all the orphaned links? The questions shouldnt disappear. It should just say "deleted" in place of user...
+
+10) N+1 Queries abound??? Fix them...

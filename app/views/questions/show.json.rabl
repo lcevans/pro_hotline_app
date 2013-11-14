@@ -1,6 +1,6 @@
 object @question
 
-attributes :title, :body, :author_id, :best_answer_id, :created_at
+attributes :id, :title, :body, :author_id, :best_answer_id, :created_at
 
 node :viewCount do |q| 
   q.views.count
