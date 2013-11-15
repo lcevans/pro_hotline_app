@@ -32,9 +32,11 @@ ProHotlineApp.Views.QuestionNew = Backbone.View.extend({
 
   	this.model.save(payload.question, {
       wait: true,
-  		error: function (model, error) {
-  			$("div.errors").html("ERROR: ");
-  			$("div.errors").append(error.responseText);
+  		error: function (model, errors) {
+        $("div.errors").html("");
+        errors.responseJSON.forEach(function (error) {
+          $("div.errors").append('<div class="alert">' + error + '</div>');
+        });
   		},
   		success: function (model) {
         window.location = '/questions/' + model.id;
@@ -50,7 +52,7 @@ ProHotlineApp.Views.QuestionNew = Backbone.View.extend({
 
   addTag: function () {
     var tagName = this.$("#question_tag_input").val()
-    var formattedTagName = $.trim(tagName).replace("_"," ").toLowerCase();
+    var formattedTagName = $.trim(tagName).replace(/_/g," ").toLowerCase();
     if (formattedTagName != "") {
       this.collection.add({name: formattedTagName});
       this.renderTags();

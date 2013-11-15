@@ -17,3 +17,4 @@ gem 'rabl'
 gem 'pry-rails'
 gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem "font-awesome-rails"
+gem "figaro"

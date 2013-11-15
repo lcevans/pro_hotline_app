@@ -33,6 +33,7 @@
               <%= link_to current_user.username, user_url(current_user) %>
           </li>          
         <% else %>
+        <li><%= render "users/demo_user_hidden_form" %></li>
           <li id="sign-in-button"><%= link_to "Sign In", new_session_url %></li>
           <li id="sign-up-button"><%= link_to "Sign Up", new_user_url %></li>
         <% end %>
@@ -44,9 +45,9 @@
 
 <body>
   <div class="body">
-	  <ul>
+	  <ul class="application-errors">
 	  	<% flash[:errors].try(:each) do |error| %>
-  		<li><%= error %></li>
+  		<li class="alert"><%= error %></li>
 	  	<% end %>
   	</ul>
     <%= yield %>

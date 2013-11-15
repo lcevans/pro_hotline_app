@@ -24,3 +24,5 @@
 //= require_tree .
 //= require jquery.serializeJSON.min
 //= require jquery.timeago
+//= require pluralize.js
+//= require md5.js

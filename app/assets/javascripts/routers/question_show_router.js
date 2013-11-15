@@ -1,12 +1,14 @@
 ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 
-	initialize: function ($questionEl, $answersEl) {
+	initialize: function ($questionEl, $answerCountEl, $answersEl) {
 		var that = this;
 		this.$questionEl = $questionEl;
+		this.$answerCountEl = $answerCountEl;
 		this.$answersEl = $answersEl;
 		
     this.listenTo(ProHotlineApp.question.answers, "add", function () {
     	that.renderAnswerView(ProHotlineApp.question.answers.last());
+    	that.renderAnswerCount();
     });
 	},
 
@@ -15,13 +17,15 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 		//":id": "jumpToAnswer"
 	},
 
-	//jumpToAnswer: function (answerId) {
-	//	this.display();
-  //  window.location.hash = ("answer-id-" + answerId); 
-  //  window.location.hash = (""); 
-	//},
+	jumpToAnswer: function (answerId) {
+		this.display(function () {
 
-	display: function () {
+			//location.hash = (answerId);
+			alert("jump"); 
+		});
+	},
+
+	display: function (callback) {
 		var that = this;
 
 		// Clear DOMs
@@ -34,10 +38,15 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 		});
 		this.$questionEl.html(questionView.render().$el);
 
+		// Display the Answer count
+		this.renderAnswerCount();
+
 		// Display its child Answers
   	ProHotlineApp.question.answers.each(function (answer) {
   		that.renderAnswerView(answer);
   	});
+
+  	if (callback) { callback(); }
 	},
 
 	renderAnswerView: function (answer) {
@@ -45,6 +54,12 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 			model: answer
 		});
 		this.$answersEl.append(answerView.render().$el);
+	},
+
+	renderAnswerCount: function () {
+		var answerCount = ProHotlineApp.question.answers.length;
+		this.$answerCountEl.html("<h2>" + answerCount + " " + 
+			                         owl.pluralize("Answer", answerCount) + "</h2>");
 	}
 
 });

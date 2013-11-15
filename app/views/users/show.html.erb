@@ -25,7 +25,11 @@
 <div class="user-bottom-half clearfix">
 
 	<div class="user-questions lead">
-    <p>Authored <%= @user.authored_questions.count %> Questions </p>
+    <p>
+      <% count = @user.authored_questions.count %>
+      Authored <%= count %> 
+      <%= (count == 1) ? "Question" : "Questions" %> 
+    </p>
     <ul>
     <% @user.authored_questions.try(:each) do |question| %>
     	<li>
@@ -37,12 +41,16 @@
 	</div>
 
 	<div class="user-answers lead">
-    <p>Authored <%= @user.authored_answers.count %> Answers </p>
+    <p>
+      <% count = @user.authored_answers.count %>
+      Authored <%= count %> 
+      <%= (count == 1) ? "Answer" : "Answers" %> 
+    </p>
     <ul>
     <% @user.authored_answers.includes(:question).try(:each) do |answer| %>
     	<li>
             <span class="user-answers-votes"><%= answer.vote_count %></span>            
-    		<%= link_to answer.question.title, question_url(answer.question, :anchor => answer.id) %>
+    		<%= link_to answer.question.title, question_url(answer.question) %>
     	</li>
     <% end %>
     </ul>

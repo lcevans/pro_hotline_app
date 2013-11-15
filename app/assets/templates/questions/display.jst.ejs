@@ -7,9 +7,7 @@
 
   <div class="question-the-rest">
 
-  	<div class = "question-body">
-  	  <%= question.escape("body") %>
-  	</div>
+  	<pre class = "question-body"><%= question.escape("body") %></pre>
   	<ul class="tags">
   		<% question.tags.each(function (tag) { %>
   		  <li class="tag label label-info">
@@ -19,20 +17,21 @@
         </li>
   		<% }); %>
     </ul>
+
     <div class="question-info clearfix">
       <div class="question-author-info">
         Asked by 
+        <img width="50" height="50" src=<%= ((question.author.backup_image == "") ? "https://secure.gravatar.com/avatar/" + md5(question.author.email) + "?s=50" : "/assets/" + question.author.backup_image) %>></img>
         <a href="/users/<%= question.author.id %>">
           <%= question.author.username %>
         </a>
         <%= question.createdAgo() %>
+          <% if (ProHotlineApp.currentUser && question.author.id == ProHotlineApp.currentUserId) { %>
+            <i class="edit-question fa fa-edit"></i>
+            <i class="delete-question fa fa-trash-o"></i>
+          <% } %>
       </div>
-      <div class="edit-tools">
-        <% if (ProHotlineApp.currentUser && question.author.id == ProHotlineApp.currentUserId) { %>
-          <i class="edit-question fa fa-edit"></i>
-          <i class="delete-question fa fa-trash-o"></i>
-        <% } %>
-      </div>
+
     </div> 
 
     <ul class="comments"></ul>

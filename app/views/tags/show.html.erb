@@ -1,9 +1,12 @@
-<h1> Tag: <%= @tag.name %> </h1>
+<h1><%= @tag.name.titleize %></h1>
+<br>
+<h2>
+	<% count = @tag.questions.count %>
+	<%= count %> 
+	<%= (count == 1) ? "Question" : "Questions" %> 
+</h2>
 
-<h2>Questions</h2>
-<ul id="tag-questions-list">
-
-</ul>
+<ul id="tag-questions-list"></ul>
 
 <script type="text/javascript">
   $.ajaxSetup({

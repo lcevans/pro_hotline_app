@@ -54,8 +54,8 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
     ProHotlineApp.question.set("best_answer_id", this.model.id);
     ProHotlineApp.question.save({},{
       wait: true,
-      error: function (model, error) {
-        alert (error.responseText);
+      error: function (model, errors) {
+        alert("error");
       },
       success: function (model) {
         $("div.best").attr("class", "not-best");
@@ -94,9 +94,11 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
 
     this.model.save(payload.answer, {
       wait: true,
-      error: function (model, error) {
-        $("div.errors").html("ERROR: ");
-        $("div.errors").append(error.responseText);
+      error: function (model, errors) {
+        $("div.errors").html("");
+        errors.responseJSON.forEach(function (error) {
+          $("div.errors").append('<div class="alert">' + error + '</div>');
+        });
       },
       success: function (model) {
         that.render(); //WARNING!!
@@ -141,15 +143,17 @@ ProHotlineApp.Views.AnswerDisplay = Backbone.View.extend({
   },
 
   deleteAnswer: function () {
-    var that = this;
-    this.model.destroy({
-      error: function (model, errors) {
-        alert(errors.responseText);
-      },
-      success: function (obj) {
-        that.remove();
-      }
-    });
+    if (confirm("Are you sure you want to delete this answer?")) {
+      var that = this;
+      this.model.destroy({
+        error: function (model, errors) {
+          alert(errors.responseText);
+        },
+        success: function (obj) {
+          that.remove();
+        }
+      });
+    }
   },
 
   // Dealing with garbage collection

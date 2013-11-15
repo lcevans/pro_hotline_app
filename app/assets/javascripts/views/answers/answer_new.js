@@ -9,7 +9,7 @@ ProHotlineApp.Views.AnswerNew = Backbone.View.extend({
   },
 
   displayButton: function () {
-  	this.$el.html('<button class="new-answer">New Answer</button>');
+  	this.$el.html('<button class="new-answer btn btn-info">New Answer</button>');
 
   	return this
   },
@@ -33,9 +33,11 @@ ProHotlineApp.Views.AnswerNew = Backbone.View.extend({
 
   	this.model.answers.create(payload.answer, {
       wait: true,
-  		error: function (model, error) {
-  			$("div.errors").html("ERROR: ");
-  			$("div.errors").append(error.responseText);
+  		error: function (model, errors) {
+        $("div.errors").html("");
+        errors.responseJSON.forEach(function (error) {
+          $("div.errors").append('<div class="alert">' + error + '</div>');
+        });
   		},
   		success: function (model) {
         that.displayButton();

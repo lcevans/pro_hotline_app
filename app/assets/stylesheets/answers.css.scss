@@ -25,7 +25,7 @@ div.answer-the-rest {
 	float: right;
 }
 
-div.answer-body {
+.answer-body {
 	background: #EEEEEE;
 	border-radius: 5px;
 	min-height: 200px;
@@ -38,9 +38,8 @@ div.answer-author-info {
 	float: right;
 }
 
-.answer-the-rest .edit-tools {
-	float: right;
-	margin-right: 7px;
+
+edit-answer delete-answer {
 	cursor: pointer;
 }
 

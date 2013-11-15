@@ -1,3 +1,14 @@
+#users-list-item {
+	display: inline-block;
+	border: 1px solid;
+	border-radius: 5px;
+	width: 15%;
+	height: 50px;
+	list-style: none;
+	left-margin: 10px;
+}
+
+
 .user-info {
 	width: 30%;
 	float: left;
@@ -19,7 +30,7 @@
 }
 
 .profile-body {
-	width: 95%;
+	width: 92%;
   height: 150px;
   border-radius: 5px;
 	background: #EEEEEE;

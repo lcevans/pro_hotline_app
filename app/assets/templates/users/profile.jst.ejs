@@ -1,7 +1,5 @@
 <h2>Profile</h2>
-<div class="profile-body">
-  <%= user.escape("profile") %>
-</div>
+<pre class="profile-body"><%= user.escape("profile") %></pre>
 <% if (ProHotlineApp.currentUser && ProHotlineApp.currentUserId == user.id) { %>
-  <button id="edit-profile">Edit Profile</button>
+  <button id="edit-profile" class="btn">Edit Profile</button>
 <% } %>

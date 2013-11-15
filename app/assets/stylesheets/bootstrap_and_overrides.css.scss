@@ -6,19 +6,29 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-/* background-color: #F5FFBA; */
+
+$background-color: #F9FFE3;
+$tag-color: #9B94CC;
+$danger-color: #000000;
+
+/*
+  $background-color: #F5FFD3;
+  $tag-color: #706B94;
+*/
+
 
 body {
-	background-color: #F5FFBA;
+	background-color: $background-color;
 }
 
 .label-info {
-	background-color: #706B94;
+	background-color: $tag-color;
 }
 
 .fa-check {
     font-size: 3.5em;
 }
+
 
 a {
 	text-decoration: none !important;
@@ -26,4 +36,10 @@ a {
 
 .tag {
 	text-transform:capitalize;
+}
+
+pre {
+  font-family: "Goudy Bookletter 1911", sans-serif;
+  word-wrap: normal;
+  word-break: normal;
 }

@@ -30,6 +30,11 @@ ProHotlineApp.Models.Comment = Backbone.Model.extend({
 	},
 
   toJSON: function() {
-    return { comment: _.clone( this.attributes ) }
+  	var attributes = _.clone(this.attributes);
+  	
+  	// Remove attributes that we should not modify on the server
+  	delete attributes.created_at;
+
+    return { comment: attributes }
   },
 });

@@ -7,7 +7,7 @@ node :viewCount do |q|
 end
 
 child :author => :author do
-	attributes :id, :username
+	attributes :id, :username, :email, :backup_image
 end
 
 child :tags => :tags do
@@ -19,10 +19,10 @@ child :votes do
 end
 
 child :comments do
-	attributes :id, :author_id, :body, :commentable_id, :commentable_type
+	attributes :id, :author_id, :body, :commentable_id, :commentable_type, :created_at
 
 	child :author => :author do
-    attributes :id, :username
+    attributes :id, :username, :email, :backup_image
   end
 
   child :votes do
@@ -31,10 +31,14 @@ child :comments do
 end
 
 child :answers do
-  attributes :id, :author_id, :question_id, :body
+  attributes :id, :author_id, :question_id, :body, :created_at
+
+  node :isBest do |a| 
+    a.question.best_answer_id == a.id
+  end
 
   child :author => :author do
-    attributes :id, :username
+    attributes :id, :username, :email, :backup_image
   end
 
   child :votes do
@@ -42,7 +46,7 @@ child :answers do
 	end
 
 	child :comments do
-	  attributes :id, :author_id, :body, :commentable_id, :commentable_type
+	  attributes :id, :author_id, :body, :commentable_id, :commentable_type, :created_at
 
 	  child :author => :author do
 	    attributes :id, :username

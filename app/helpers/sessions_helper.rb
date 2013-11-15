@@ -19,7 +19,7 @@ module SessionsHelper
 
   def require_current_user!
     if current_user.nil?
-      flash[:errors] = ["You must be logged in to do that"]
+      flash.now[:errors] = ["You must be logged in to do that"]
       redirect_to new_session_url 
     end
   end

@@ -13,7 +13,7 @@ ProHotlineApp.Views.CommentNew = Backbone.View.extend({
   },
 
   displayButton: function () {
-  	this.$el.html('<button class="new-answer">New Comment</button>');
+  	this.$el.html('<button class="new-answer btn">New Comment</button>');
 
   	return this
   },
@@ -38,9 +38,11 @@ ProHotlineApp.Views.CommentNew = Backbone.View.extend({
 
   	this.model.comments.create(payload.comment, {
       wait: true,
-  		error: function (model, error) {
-  			$("div.errors").html("ERROR: ");
-  			$("div.errors").append(error.responseText);
+  		error: function (model, errors) {
+        $("div.errors").html("");
+        errors.responseJSON.forEach(function (error) {
+          $("div.errors").append('<div class="alert">' + error + '</div>');
+        });
   		},
   		success: function (model) {
         that.displayButton();

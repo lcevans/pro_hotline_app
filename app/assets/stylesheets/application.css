@@ -33,3 +33,7 @@
 	float: right;
 }
 
+.application-errors li {
+	width: 50%;
+	list-style: none;
+}

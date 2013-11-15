@@ -1,18 +1,4 @@
-***) deal with issues between this.$el.children and this.$
+1) Demo Account button missized
 
-4) Rendering JSON on Back/Forward
+2) Cursor doesnt change on edit/delete
 
-5) I think I am pushing my secret token to github?
-
-6) pluralization issues?
-
-7) Jump to anchor tag issue
-
-8) Doesn't update the number of answers when creating a new one
-
-
---LOW PRIORITY
-
-9) Deal with what happens after you delete a User. What happens to all the orphaned links? The questions shouldnt disappear. It should just say "deleted" in place of user...
-
-10) N+1 Queries abound??? Fix them...

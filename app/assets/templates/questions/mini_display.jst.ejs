@@ -1,26 +1,26 @@
 <li class="question-mini">
-	<div class="item side-item">
+	<div class="item side-item vote-side-item">
 	  <div class="sub-item">
 	    <%= question.voteCount() %>
 	  </div>
 	  <div class="sub-item">
-	    Votes
+	    <%= owl.pluralize("Vote", question.voteCount()) %>
 	  </div>
 	</div>
-	<div class="item side-item" data-best="<%= (answered ? "true" : "") %>">
+	<div class="item side-item answer-side-item" data-best="<%= (answered ? "true" : "") %>">
 	  <div class="sub-item">
 	    <%= question.answers.length %>
 	  </div>
 	  <div class="sub-item">
-	    Answers
+	    <%= owl.pluralize("Answer", question.answers.length) %>
 	  </div>
 	</div>
-	<div class="item side-item">
+	<div class="item side-item view-side-item">
 	  <div class="sub-item">
 	    <%= question.viewCount %>
 	  </div>
 	  <div class="sub-item">
-	    Views
+	    <%= owl.pluralize("View", question.viewCount) %>
 	  </div>
 	</div>
 	<div class="item">

@@ -13,6 +13,11 @@ ProHotlineApp.Models.Answer = Backbone.Model.extend({
     return upvotes - downvotes;
 	},
 
+	createdAgo: function () {
+		var timeCreated = new Date(this.get("created_at"));
+		return $.timeago(timeCreated);	
+	},
+
 	constructor: function() {
     this.votes = new ProHotlineApp.Collections.Votes();
     this.comments = new ProHotlineApp.Collections.Comments();
@@ -28,11 +33,19 @@ ProHotlineApp.Models.Answer = Backbone.Model.extend({
 
 		this.author = attributes.author;
 		delete attributes.author;
+		this.isBest = attributes.isBest;
+		delete attributes.isBest;
+
 
 		return attributes;
 	},
 
   toJSON: function() {
-    return { answer: _.clone( this.attributes ) }
+  	var attributes = _.clone(this.attributes);
+  	
+  	// Remove attributes that we should not modify on the server
+  	delete attributes.created_at;
+
+    return { answer: attributes }
   },
 });

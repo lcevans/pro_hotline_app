@@ -5,7 +5,7 @@
 
 <% if (!!current_user) %>
 	<%= link_to "Ask a Question", new_user_question_url(current_user.id), 
-	                              :class => "btn btn-default btn-wide btn-info btn-new-question" %>
+	                              :class => "btn btn-default btn-info btn-new-question" %>
 <% end %>
 
 <ul class="questions"></ul>

@@ -1,7 +1,6 @@
 <div class="question"></div>
 
-
-<h2><%= @question.answers.count %> Answers </h2>
+<div class="answer-count"></div>
 <div class="answers"></div>
 
 <br>
@@ -22,7 +21,7 @@
 		ProHotlineApp.question.set('id', <%= @question.id %>);
 		ProHotlineApp.question.fetch({
 			success: function () {
-				new ProHotlineApp.Routers.QuestionShow($("div.question"), $("div.answers"));
+				new ProHotlineApp.Routers.QuestionShow($("div.question"), $(".answer-count"), $("div.answers"));
 				Backbone.history.start();
 			}
 		});	

@@ -52,9 +52,11 @@ ProHotlineApp.Views.CommentDisplay = Backbone.View.extend({
 
     this.model.save(payload.comment, {
       wait: true,
-      error: function (model, error) {
-        $("div.errors").html("ERROR: ");
-        $("div.errors").append(error.responseText);
+      error: function (model, errors) {
+        $("div.errors").html("");
+        errors.responseJSON.forEach(function (error) {
+          $("div.errors").append('<div class="alert">' + error + '</div>');
+        });
       },
       success: function (model) {
         that.render(); ///WARNING!

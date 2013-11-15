@@ -9,6 +9,8 @@ module UsersHelper
   		image_tag(gravatar_url, alt: user.username, class: "gravatar")
   	else
   		size_string = "#{options[:size]}x#{options[:size]}"
+      p "***************"
+      p size_string
   		image_tag(user.backup_image, class: "gravatar", size: size_string)
   	end
   end

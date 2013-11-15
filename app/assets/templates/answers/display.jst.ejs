@@ -1,3 +1,5 @@
+<a name="#answer-<%= answer.id %>"></a>
+
 <div class="answer-content clearfix">
   <div class="answer-header">
     <h4><%= "Answer by " + answer.author.username %></h4>
@@ -19,24 +21,22 @@
 
   <div class="answer-the-rest">
 
-  	<div class = "answer-body">
-  	  <%= answer.escape("body") %>
-  	</div>
+  	<pre class = "answer-body"><%= answer.escape("body") %></pre>
     <div class="answer-info clearfix">
-
       <div class="answer-author-info">
         Answered by 
+        <img width="50" height="50" src=<%= ((answer.author.backup_image == "") ? "https://secure.gravatar.com/avatar/" + md5(answer.author.email) + "?s=50" : "/assets/" + answer.author.backup_image) %>></img>
         <a href="/users/<%= answer.author.id %>">
           <%= answer.author.username %>
         </a>
+        <%= answer.createdAgo() %>
+        <% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
+          <i class="edit-answer fa fa-edit"></i>
+          <i class="delete-answer fa fa-trash-o"></i>
+        <% } %>
       </div>
 
-      <div class="edit-tools">
-	      <% if (ProHotlineApp.currentUser && answer.author.id == ProHotlineApp.currentUserId) { %>
-  	      <i class="edit-answer fa fa-edit"></i>
-  	      <i class="delete-answer fa fa-trash-o"></i>
-	      <% } %>
-	    </div>
+
     </div> 
 
     <ul class="comments"></ul>
