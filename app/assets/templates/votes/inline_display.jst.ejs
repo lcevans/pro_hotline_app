@@ -2,11 +2,15 @@
 <span class="inline-vote-count">
   <% if (ProHotlineApp.currentUser) { %>
     <i class=" upvote fa fa-caret-up fa-lg"></i>
+  <% } else { %>
+    <i class="unsigned fa fa-caret-up fa-lg"></i>    
   <% } %>
   <span id="inline-vote-number">
     <%= candidate.voteCount() %>
   </span>
   <% if (ProHotlineApp.currentUser) { %>
     <i class="downvote fa fa-caret-down fa-lg"></i>
+  <% } else { %>
+    <i class="unsigned fa fa-caret-down fa-lg"></i>    
   <% } %>
 </span>

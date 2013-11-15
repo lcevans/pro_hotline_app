@@ -10,6 +10,18 @@
 	cursor: pointer;
 }
 
+.upvote:hover {
+	color: #F7D960;
+}
+
+.downvote:hover {
+	color: #F7D960;
+}
+
 .vote-count {
 	font-size: 1.5em;
+}
+
+.unsigned {
+	cursor: not-allowed;
 }

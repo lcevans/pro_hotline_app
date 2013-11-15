@@ -1,7 +1,7 @@
 
 <div class="question-content clearfix">
   <div class="question-title">
-    <h2><%= question.escape("title") %></h2>
+    <h3><%= question.escape("title") %></h3>
   </div>
   <div class="question-votes"></div>
 
@@ -26,10 +26,10 @@
           <%= question.author.username %>
         </a>
         <%= question.createdAgo() %>
-          <% if (ProHotlineApp.currentUser && question.author.id == ProHotlineApp.currentUserId) { %>
-            <i class="edit-question fa fa-edit"></i>
-            <i class="delete-question fa fa-trash-o"></i>
-          <% } %>
+        <% if (ProHotlineApp.currentUser && question.author.id == ProHotlineApp.currentUserId) { %>
+          <i class="edit-question fa fa-edit"></i>
+          <i class="delete-question fa fa-trash-o"></i>
+        <% } %>
       </div>
 
     </div> 

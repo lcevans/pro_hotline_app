@@ -32,6 +32,8 @@ Tag.create(name: "ghosts 'n goblins")
 Tag.create(name: "marble madness")
 Tag.create(name: "tetris")
 Tag.create(name: "teenage mutant ninja turtles")
+
+
 Tag.create(name: "little nemo")
 
 
@@ -39,11 +41,13 @@ Tag.create(name: "little nemo")
 jerry_hicks = User.create!(username: "Jerry Hicks", password: "password", email: "", backup_image: "JerryHicks.png", profile: "Became Game Counselor: May, 1990\nHobbies: Playing Video Games, Music, Horseback Riding, Computers\nFavorite Game: Crystalis")
 matt_alderman = User.create!(username: "Matt Alderman", password: "password", email: "", backup_image: "MattAlderman.png", profile: "Became Game Counselor: Feb, 1990\nHobbies: Martial Arts, Sports, Drawing, Video Games\nBest Accomplishment: Finished Little Nemo\nFavorite Game: Mega Man")
 roger_harrison = User.create!(username: "Roger Harrison", password: "password", email: "", backup_image: "RogerHarrison.png", profile: "Became Game Counselor: May, 1990\nHobbies: Baseball, Basketball, Fishing, Reading\nBest Accomplishment: Finished Blaster Master without losing a life\nFavorite Game: Baseball Stars")
+jane_hacker = User.create!(username: "Jane Hacker", password: "password", email: "", backup_image: "JaneHacker.png", profile: "Became Game Counselor: March, 1990\nHobbies: Music, Karate, Skiing\nBest Accomplishment: Beat Strider in 45 minutes.\nFavorite Game: The Legend of Zelda")
 brian_downey = User.create!(username: "Brian Downey", password: "password", email: "", backup_image: "BrianDowney.png", profile: "Became Game Counselor: May, 1990\nHobbies: Reading, Snacking, Movies\nBest Accomplishment: Finished Mega Man 3 with one man\nFavorite Game: Castlevania 3")
 brian_anderson = User.create!(username: "Brian Anderson", password: "password", email: "", backup_image: "BrianAnderson.png", profile: "Became Game Counselor: Jan, 1989\nHobbies: Drawing, Water Skiing, Playing Soccer, Listening to Van Halen, Tossin' Frisbees\nBest Accomplishment: I've mastered over 250 games\nFavorite Game: Castlevania 3")
 caesar_filori = User.create!(username: "Caesar Filori", password: "password", email: "", backup_image: "CaesarFilori.png", profile: "Became Game Counselor: Sept, 1989\nHobbies: Music, Beating other counselors in Baseball Stars, Playing Australian Rules Football\nBest Accomplishment: Completed Contra in 15 minutes, in one life, with the Power Glove\nFavorite Game: Mega Man 3")
 rick = User.create!(username: "Rick", password: "password", email: "", backup_image: "HeadsetHarry.png", profile: "Became Game Counselor: April, 1989\nHobbies: Computers, Video Games, Watching Football\nBest Accomplishment: Helped a young video game 'wizard' win Videogame Armageddon\nFavorite Game: Simon's Quest")
-radical_randy = User.create!(username: "Radical Randy", password: "password", email: "", backup_image: "RadicalRandy.png", profile: "Hey dudes, my name is Randy and I've been an avid gamer for years.\nIf you're after some righteous tips you've come to the numero uno tip meister!")
+radical_randy = User.create!(username: "Radical Randy", password: "password", email: "", backup_image: "RadicalRandy.png", profile: "Hey dudes and dudettes, my name is Randy and I've been an avid gamer for years.\nIf you're after some righteous tips you've come to the numero uno tip meister!")
+
 
 
 demo_user = User.create!(username: "Demo User", password: "password", email: "", backup_image: "MegaMan.png", profile: "Demo User's profile -- Feel free to edit me!")
@@ -63,6 +67,8 @@ brian_anderson.tags = [Tag.find_by_name("castlevania 3"), Tag.find_by_name("batm
 brian_anderson.save
 caesar_filori.tags = [Tag.find_by_name("baseball stars"), Tag.find_by_name("contra"), Tag.find_by_name("ghosts 'n goblins")]
 caesar_filori.save
+jane_hacker.tags = [Tag.find_by_name("the legend of zelda"), Tag.find_by_name("star tropics"), Tag.find_by_name("metroid")]
+jane_hacker.save
 rick.tags = [Tag.find_by_name("simon's quest"), Tag.find_by_name("double dragon"), Tag.find_by_name("mega man 2")]
 rick.save
 radical_randy.tags = Tag.all
@@ -133,6 +139,7 @@ a7 = Answer.create(author_id: roger_harrison.id, question_id: q6.id, body: "Rumo
 # Question 7
 a8 = Answer.create(author_id: brian_downey.id, question_id: q7.id, body: "Leave no gravestone unturned...")
 c7 = Comment.create(author_id: chris.id, commentable_id: a8.id, commentable_type: "Answer", body: "I found the old man but he doesn't give me the sword...")
+a13 = Answer.create(author_id: jane_hacker.id, question_id: q7.id, body: "You also need to have at least 12 heart containers.")
 
 # Question 8
 a9 = Answer.create(author_id: brian_downey.id, question_id: q8.id, body: "This is gonna start a debate!\n\nMy favorite is Mega Man 3, which boasts the latest and greatest Mega Man weaponry. And who doesn't love Mega Man's adorable pooch Rush?")

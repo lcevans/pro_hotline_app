@@ -47,6 +47,7 @@ div.question-content {
 
 
 div.question-title {
+	margin-left: 5%;
 }
 
 div.question-votes {
@@ -68,6 +69,7 @@ div.question-the-rest {
 	background: #EEEEEE;
 	border-radius: 5px;
 	min-height: 200px;
+	width:95%;
 }
 
 div.question-info {
@@ -77,9 +79,16 @@ div.question-author-info {
 	float: right;
 }
 
-edit-question delete-question {
+.edit-question:hover, .delete-question:hover {
 	cursor: pointer;
 }
+
+.answer-count {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 
 /* Editing Question */
 
@@ -99,6 +108,12 @@ edit-question delete-question {
 }
 
 /* Questions Index Page */
+
+#questions-index-title {
+	margin-left: 50px;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
 
 
 .questions {
@@ -165,8 +180,4 @@ edit-question delete-question {
 
 .btn-new-question {
 	margin: 0px 0px 0px 50px;
-}
-
-#questions-index-title {
-	text-align: center;
 }

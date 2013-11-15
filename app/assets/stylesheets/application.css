@@ -37,3 +37,7 @@
 	width: 50%;
 	list-style: none;
 }
+
+.hidden-user-form {
+	margin: 0px;
+}

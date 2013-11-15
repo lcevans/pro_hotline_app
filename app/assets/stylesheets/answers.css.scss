@@ -3,6 +3,8 @@ div.answer {
 	margin: 0 auto;
 }
 
+
+
 div.answer-content {
 	max-width: 1000px;
 	margin: 12px auto;
@@ -12,6 +14,8 @@ div.answer-content {
 }
 
 div.answer-header {
+	margin-left: 5%;
+	visibility: hidden;
 }
 
 div.answer-sidebar {
@@ -29,6 +33,7 @@ div.answer-the-rest {
 	background: #EEEEEE;
 	border-radius: 5px;
 	min-height: 200px;
+	width: 95%;
 }
 
 div.answer-info {

@@ -58,8 +58,8 @@ ProHotlineApp.Routers.QuestionShow = Backbone.Router.extend({
 
 	renderAnswerCount: function () {
 		var answerCount = ProHotlineApp.question.answers.length;
-		this.$answerCountEl.html("<h2>" + answerCount + " " + 
-			                         owl.pluralize("Answer", answerCount) + "</h2>");
+		this.$answerCountEl.html("<h1>" + answerCount + " " + 
+			                         owl.pluralize("Answer", answerCount) + "</h1>");
 	}
 
 });
