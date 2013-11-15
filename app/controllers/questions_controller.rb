@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 	before_filter :require_current_user!, :except => [:index, :show]
 
 	def index
-		@questions = Question.includes(:author).all
+		@questions = Question.includes(:author, :tags, :votes, :answers, :comments).all
 		respond_to do |format|
       format.html { render :index }
       format.json 
