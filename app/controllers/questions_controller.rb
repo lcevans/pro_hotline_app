@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 	before_filter :require_current_user!, :except => [:index, :show]
 
 	def index
-		@questions = Question.includes(:author, :tags, :votes, :answers, :comments).all
+		@questions = Question.includes(:tags, :votes, :answers, :views).all
 		respond_to do |format|
       format.html { render :index }
       format.json 
@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
 
 	def show
 		question_id = params[:id]		
-		@question = Question.find(question_id)
+		@question = Question.includes(:author, :tags, :votes, :answers, :comments, :views).find(question_id)
 
 		if hasnt_viewed(current_user, question_id)
 			View.create!(:user_id => current_user_id, :question_id => question_id)
