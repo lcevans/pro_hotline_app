@@ -1,6 +1,5 @@
 $best-answer-color: #C7F5B8;
 
-
 /* New Question Page */
 
 #new-question-title {
@@ -108,7 +107,14 @@ div.question-author-info {
 	width: 75%;
 }
 
+
+
 /* Questions Index Page */
+
+#loading-text {
+	text-align: center;
+	margin-top: 100px;
+}
 
 #questions-index-title {
 	margin-left: 50px;

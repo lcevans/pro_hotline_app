@@ -15,6 +15,15 @@ ProHotlineApp.Routers.QuestionsIndex = Backbone.Router.extend({
 		// Clear DOM
 		this.$questionsEl.html("");
 
+		// Reveal the page  and hide loading text upon loading
+		$("#questions-index-title").attr("class", "");
+		$("#new-question-button").attr("class", "");
+		$(".loading-text").attr("class", "hidden");
+
+		// Clear Loading Text
+		//$("#loading-text").html("");
+		//$("#loading-text").attr("id", "finished-loading");
+
 		// Display the Questions
   	ProHotlineApp.questions.each(function (question) {
   		that.renderQuestionMiniView(question);

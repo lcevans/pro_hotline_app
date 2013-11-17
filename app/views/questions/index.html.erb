@@ -1,12 +1,15 @@
 <!-- <image src="images/thumbs_up.jpg"></image> -->
 
+<h3 class="loading-text">Loading...</h3>
 
-<h1 id="questions-index-title">All Questions</h1>
+<h1 id="questions-index-title" class="hidden">All Questions</h1>
 
-<% if (!!current_user) %>
+<div id="new-question-button" class="hidden">
+	<% if (!!current_user) %>
 	<%= link_to "Ask a Question", new_user_question_url(current_user.id), 
 	                              :class => "btn btn-default btn-info btn-new-question" %>
-<% end %>
+	<% end %>
+</div>
 
 <ul class="questions"></ul>
 
