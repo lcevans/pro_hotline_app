@@ -111,6 +111,10 @@ div.question-author-info {
 
 /* Questions Index Page */
 
+.space-buffer {
+	margin-top: 80px;
+}
+
 #loading-text {
 	text-align: center;
 	margin-top: 100px;
@@ -131,6 +135,7 @@ div.question-author-info {
 .question-mini {
 	background-color: #F0F0F0;
 	width: 80%;
+	min-width: 900px;
 	border: 1px solid;
 	border-radius: 5px;
 	display: inline-block;
